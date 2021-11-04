@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ncarne2"
+    android:orientation="vertical"
+    tools:context=".ui.productos.DatosProducto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="REGISTRO DE ALIMENTOS"
+        android:textColor="@color/ncarne"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardse"
+        android:layout_width="match_parent"
+        android:layout_height="515dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="10dp"
+        app:strokeWidth="5dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="@string/txt_nombre_prod">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_nombreP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="@string/txt_desc_prod"
+            android:paddingTop="80dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_descripcionP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="@string/txt_precio_prod"
+            android:paddingTop="160dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_precioP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/opCategorias"
+            android:layout_width="320dp"
+            android:layout_height="212dp"
+            android:layout_marginTop="248dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:paddingLeft="15dp"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_guardar_prod"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:backgroundTint="@color/green"
+            android:text="GUARDAR"
+            app:iconGravity="end" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

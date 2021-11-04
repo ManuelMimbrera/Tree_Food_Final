@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">Tree Food</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Tree Food</string>
+    <string name="nav_header_subtitle">treefoodoficial@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Clientes -->
+    <string name="menu_cliente">Cliente</string>
+    <string name="menu_elim_cli">Cliente a eliminar</string>
+    <string name="txt_list_cli">Listado de clientes</string>
+    <string name="btn_sin_clientes">Mostrar clientes</string>
+    <string name="txt_no_cliente">No. cliente</string>
+    <string name="txt_nombre_cliente">Nombre(s)</string>
+    <string name="txt_apat_cliente">Apellido paterno</string>
+    <string name="txt_amat_cliente">Apellido materno</string>
+    <string name="txt_razon_cliente">Razón social</string>
+    <string name="txt_rfc_cliente">RFC</string>
+    <string name="txt_tel_cliente">Teléfono</string>
+    <string name="txt_direc_cliente">Dirección</string>
+    <string name="txt_pais_cliente">País</string>
+    <string name="txt_email_cliente">Correo electrónico</string>
+    <string name="txt_estado_cliente">Estado</string>
+    <string name="menu_datos_cliente">Regitrar Cliente</string>
+
+    <!-- Productos -->
+    <string name="menu_producto">Alimentos</string>
+    <string name="menu_elim_prod">Alimento a eliminar</string>
+    <string name="txt_list_prod">ALIMENTOS</string>
+    <string name="txt_list_pR">LISTA DE ALIMENTOS</string>
+    <string name="txt_list_cA">LISTA DE CATEGORÍAS</string>
+    <string name="btn_sin_productos">AÑADIR NUEVO</string>
+    <string name="txt_nombre_prod">Nombre del alimento</string>
+    <string name="txt_desc_prod">Descripción del producto</string>
+    <string name="txt_precio_prod">Precio</string>
+    <string name="txtElegirCategoria">Categoría a la que pertenece:</string>
+    <string name="menu_datos_producto">AGREGAR ALIMENTO</string>
+
+    <!-- Menú -->
+    <string name="menu">Menú</string>
+    <string name="txt_list_menu">Menú</string>
+
+    <!-- Categorías -->
+    <string name="menu_categoria">Categorías</string>
+    <string name="menu_elim_cate">Categoría a eliminar</string>
+    <string name="txt_titulo">Categorías</string>
+    <string name="txt_list_cat">CATEGORÍAS</string>
+    <string name="btn_sin_cate">Agregar nueva</string>
+    <string name="txt_nombre_cate">Categoria</string>
+    <string name="txt_desc_cate">Descripción</string>
+    <string name="escoge">Selecciona</string>
+    <string name="txt_estado_cate">Estado</string>
+    <string-array name="opcionesArray">
+        <item>Activo</item>
+        <item>Desactivo</item>
+    </string-array>
+    <string name="menu_datos_categoria">Nueva categoría</string>
+
+    <!-- Ventas -->
+    <string name="menu_carrito">Carrito</string>
+    <string name="menu_finalizar">Comprar producto</string>
+    <string name="txt_list_ven">COMPRAR ALIMENTOS</string>
+    <string name="txt_pagar_total">Total a pagar</string>
+    <string name="txt_pago">Efectivo</string>
+    <string name="txt_regreso">Cambio</string>
+    <string name="btn_agregar_carrito">Agregar</string>
+    <string name="btn_prod_ven">Seguir comprando</string>
+    <string name="btn_comprar">Comprar ahora</string>
+    <string name="btn_fin_ven">Finalizar compra</string>
+
+    <!-- Login -->
+    <string name="txt_usuario">Correo electrónico</string>
+    <string name="txt_contrasena">Contraseña</string>
+    <string name="btn_sesion">Ingresar</string>
+
+    <!-- Registro -->
+    <string name="txt_reg">Registro</string>
+    <string name="txt_nomUsu">Nombre de usuario</string>
+    <string name="btn_registrarse">Registrarse</string>
+
+    <!-- Público -->
+    <string name="btn_aceptar">Aceptar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_editar">Editar</string>
+    <string name="btn_actualizar">Actualizar</string>
+    <string name="btn_eliminar">Eliminar</string>
+    <string name="btn_guardar_datos">Guardar datos</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

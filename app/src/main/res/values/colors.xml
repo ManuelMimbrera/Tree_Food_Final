@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#2962FF</color>
+    <!--TODO: color de botones y header-->
+    <color name="purple_500">#9F743A</color>
+
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="azul">#C8C8C8</color>
+    <color name="card">#6FEFEFEF</color>
+    <color name="gray">#6F494949</color>
+    <color name="red">#9CD50000</color>
+    <color name="bluee">#9C2962FF</color>
+    <color name="green">#4CAF50</color>
+
+    <color name="yellow_002">#F3B806</color>
+
+    <color name="ngris">#797D7F </color>
+    <color name="ngris2">#D3D3D3</color>
+    <color name="ncafe">#9F743A</color>
+    <color name="ncarne">#675037</color>
+    <color name="ncarne2">#f9efe7</color>
+</resources>

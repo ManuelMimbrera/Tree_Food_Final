@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".ui.cliente.RegisterClienteFragment">
+
+
+    <EditText
+        android:id="@+id/cliente_numero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_no_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/nombre_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_nombre_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ap_pat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_apat_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ap_mat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_amat_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/razon_social"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_razon_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/rfc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_rfc_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_tel_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_direc_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/paiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_pais_cliente"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/correo_electronico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_email_cliente" />
+
+    <EditText
+        android:id="@+id/estado_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_estado_cliente"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnGuardarCli"
+        android:text="@string/btn_guardar_datos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
