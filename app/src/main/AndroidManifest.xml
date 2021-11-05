@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica1">
+        <activity android:name=".ui.carrito.DialogoActivity"></activity>
+        <activity android:name=".ui.carrito.DialogActivity" />
         <activity
             android:name=".ui.registro.Registro"
             android:exported="true" />

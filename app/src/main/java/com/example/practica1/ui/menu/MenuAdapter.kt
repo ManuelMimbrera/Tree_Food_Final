@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
 import com.example.practica1.ui.menu.CustomView
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -42,7 +43,8 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 
 
         agregarProd.setOnClickListener{
-            Toast.makeText(holder?.itemView?.context, "Agregado al carrito", Toast.LENGTH_LONG).show()
+            Snackbar.make(agregarProd, "Ha sido agregado al carrito", Snackbar.LENGTH_SHORT)
+                .show()
 
             var url = "http://10.0.76.173:8000/api/guardar_opciones"
 

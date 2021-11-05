@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.findNavController
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -112,8 +113,8 @@ class EliminarProductos : DialogFragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Toast.makeText(context, "Alimento eliminado", Toast.LENGTH_LONG).show()
-
+                        Snackbar.make(btnEliminarProd , "Alimento eliminado", Snackbar.LENGTH_SHORT)
+                            .show()
                         val navController = view.findNavController()
                         navController.navigate(R.id.nav_productos)
                     }

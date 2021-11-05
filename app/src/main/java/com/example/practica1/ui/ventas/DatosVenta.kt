@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DatosVenta.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DatosVenta : Fragment() {
+class DatosVenta : DialogFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

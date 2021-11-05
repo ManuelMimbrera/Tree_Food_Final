@@ -14,6 +14,7 @@ import com.example.practica1.R
 import com.example.practica1.base.dbHelper
 import com.example.practica1.ui.categoria.DatosCategoria
 import com.example.practica1.ui.productos.DatosProducto
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -113,7 +114,8 @@ class FinalizarVenta : Fragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Toast.makeText(context, "¡Tu compra ha sido realizada!", Toast.LENGTH_LONG).show()
+                        Snackbar.make(btnFinalizar , "¡Tu compra ha sido realizada!", Snackbar.LENGTH_SHORT)
+                            .show()
                     }
                 }
 

@@ -19,6 +19,7 @@ import com.example.practica1.ui.categoria.CategoriasAdapter
 import com.example.practica1.ui.categoria.CategoriasFragment
 import com.example.practica1.ui.categoria.DatosCategoria
 import com.example.practica1.ui.ventas.DatosVenta
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -190,7 +191,8 @@ class DatosProducto : Fragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Toast.makeText(context, "Datos guardados", Toast.LENGTH_LONG).show()
+                        Snackbar.make(btnGuardarProd , "Alimento eliminado", Snackbar.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
