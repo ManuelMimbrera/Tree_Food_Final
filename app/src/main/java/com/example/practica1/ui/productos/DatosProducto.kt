@@ -191,7 +191,7 @@ class DatosProducto : Fragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Snackbar.make(btnGuardarProd , "Alimento eliminado", Snackbar.LENGTH_SHORT)
+                        Snackbar.make(btnGuardarProd , "Alimento guardado", Snackbar.LENGTH_SHORT)
                             .show()
                     }
                 }
