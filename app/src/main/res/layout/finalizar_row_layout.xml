@@ -1,42 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/ncarne2"
-    android:orientation="vertical"
-    tools:context=".ui.productos.DatosProducto">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="REGISTRO DE ALIMENTOS"
+        android:text="COMPRAR AHORA"
         android:textColor="@color/ncarne"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cardse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardse"
-        android:layout_width="match_parent"
-        android:layout_height="515dp"
+        android:layout_width="335dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
         android:layout_margin="15dp"
         app:cardCornerRadius="22dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeWidth="5dp">
 
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="40dp"
+            android:background="@drawable/ic_baseline_receipt_long_24"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/ncarne"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:hint="@string/txt_nombre_prod">
+            android:hint="Total a pagar"
+            android:paddingTop="100dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_nombreP"
+                android:id="@+id/txt_total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -49,11 +66,11 @@
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:hint="@string/txt_desc_prod"
-            android:paddingTop="80dp">
+            android:hint="Efectivo"
+            android:paddingTop="180dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_descripcionP"
+                android:id="@+id/txt_efectivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -65,40 +82,26 @@
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:hint="@string/txt_precio_prod"
-            android:paddingTop="160dp">
+            android:hint="Cambio"
+            android:paddingTop="260dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_precioP"
+                android:id="@+id/txt_cambio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/opCategorias"
-            android:layout_width="320dp"
-            android:layout_height="212dp"
-            android:layout_marginTop="248dp"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:paddingLeft="15dp"
-            android:textColor="#FF000000"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_guardar_prod"
+            android:id="@+id/btn_finalizar"
             style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="160dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:backgroundTint="@color/green"
-            android:text="GUARDAR"
-            app:iconGravity="end" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="380dp"
+            android:text="@string/btn_fin_ven"
+            app:backgroundTint="@color/yellow_002" />
     </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

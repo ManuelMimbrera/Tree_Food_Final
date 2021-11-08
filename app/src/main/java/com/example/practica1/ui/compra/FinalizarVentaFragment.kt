@@ -1,4 +1,4 @@
-package com.example.practica1.ui.ventas
+package com.example.practica1.ui.compra
 
 import android.app.Activity
 import android.content.Context
@@ -8,14 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.categoria.CategoriasFragment
+import com.example.practica1.ui.productos.DatosProducto
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -29,10 +29,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DatosVenta.newInstance] factory method to
+ * Use the [TotalFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DatosVenta : DialogFragment() {
+class FinalizarVentaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,29 +50,20 @@ class DatosVenta : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_datos_venta, container, false)
+        var view = inflater.inflate(R.layout.fragment_finalizar_venta, container, false)
 
-        var btnFin = view.findViewById<Button>(R.id.btnFinalizar)
-        var btnCarritoo = view.findViewById<Button>(R.id.btnCarrito)
-        var listaCarro = view.findViewById<RecyclerView>(R.id.lista_carrito)
+        var listatotal = view.findViewById<RecyclerView>(R.id.Lista_total)
+        var btnFinalizar = view.findViewById<Button>(R.id.btnFinalizar)
 
-
-        btnCarritoo.setOnClickListener {
-            val navController = view.findNavController()
-            navController.navigate(R.id.nav_menu)
-        }
-
-        //Toast.makeText(context,"Sincronizando datos", Toast.LENGTH_SHORT).show()
-
-        var urlDatos = "http://10.0.76.173:8000/api/lista_opciones"
+        var urlDatos = "http://10.0.76.173:8000/api/sumar_costo"
 
         val tipoPeticion = "application/json; charset=utf-8".toMediaType()
 
         var njson = Gson()
 
-        var datosJsonOp = njson.toJson(datosPeticion("%"))
+        var datosJsonPro = njson.toJson(FinalizarVentaFragment.peticionT(""))
 
-        var request = Request.Builder().url(urlDatos).post(datosJsonOp.toRequestBody(tipoPeticion))
+        var request = Request.Builder().url(urlDatos).get()
 
         val dbHelp = dbHelper(context as Context)
         val dbRead = dbHelp.readableDatabase
@@ -103,18 +94,18 @@ class DatosVenta : DialogFragment() {
             override  fun onResponse(call: Call, response: Response) {
                 var textoJson = response?.body?.string()
 
-                print(textoJson)
+                //print(textoJson)
 
                 val actMain = activity as Activity
 
                 actMain.runOnUiThread{
                     var datosJson = Gson()
 
-                    var prod = datosJson?.fromJson(textoJson, Array<datosCarrito>::class.java)
+                    var totala = datosJson?.fromJson(textoJson, Array<FinalizarVentaFragment.datosTotal>::class.java)
 
-                    listaCarro.adapter = VentasAdapter(prod)
+                    listatotal.adapter = FinalizarVentaAdapter(totala)
 
-                    //Toast.makeText(context,"¡Sincronización completa!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"¡Sincronización completa!", Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -128,27 +119,19 @@ class DatosVenta : DialogFragment() {
             }
         })
 
-        btnFin.setOnClickListener {
-            val navController = view.findNavController()
-            navController.navigate(R.id.nav_finalizar_ven)
-        }
+        listatotal.layoutManager = LinearLayoutManager(context)
 
-        listaCarro.layoutManager = LinearLayoutManager(context)
-        return view
+        return view;
     }
 
-    data class datosCarrito(
-        val id: Int?,
-        val producto: String,
-        val descri: String,
-        val costo: Float,
+    data class datosTotal(
+        val total: Float,
+        val recibido: Float,
+        val entregado: Float,
     )
-
-    data class datosPeticion(
+    data class peticionT(
         val product: String
     )
-
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -156,12 +139,12 @@ class DatosVenta : DialogFragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DatosVenta.
+         * @return A new instance of fragment TotalFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DatosVenta().apply {
+            FinalizarVentaFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

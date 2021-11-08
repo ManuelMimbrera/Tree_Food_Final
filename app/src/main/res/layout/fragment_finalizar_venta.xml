@@ -5,115 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.ventas.FinalizarVenta">
+    tools:context=".ui.compra.FinalizarVentaFragment">
 
 
-    <TextView
-        android:layout_width="423dp"
-        android:layout_height="224dp"
-        android:background="@drawable/ic_fondo2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Lista_total"
+        android:layout_width="358dp"
+        android:layout_height="638dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/txt_pagar_total"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_finalizar"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="584dp"
-        android:backgroundTint="#FFAB00"
-        android:text="@string/btn_fin_ven"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <EditText
-        android:id="@+id/txt_efectivo"
-        android:layout_width="320dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="336dp"
-        android:background="@drawable/round_border"
-        android:backgroundTint="#EFEDED"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingLeft="15dp"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:text="@string/txt_regreso"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="@string/txt_pago"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txt_precioFinal"
-        android:layout_width="320dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="236dp"
-        android:background="@drawable/round_border"
-        android:backgroundTint="#EFEDED"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingLeft="15dp"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txt_cambio"
-        android:layout_width="320dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="436dp"
-        android:background="@drawable/round_border"
-        android:backgroundTint="#EFEDED"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingLeft="15dp"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

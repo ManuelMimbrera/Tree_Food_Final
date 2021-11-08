@@ -32,7 +32,7 @@
     <string name="txt_list_pR">LISTA DE ALIMENTOS</string>
     <string name="txt_list_cA">LISTA DE CATEGORÍAS</string>
     <string name="btn_sin_productos">AÑADIR NUEVO</string>
-    <string name="txt_nombre_prod">Nombre del alimentoeweqweqweqweqwee</string>
+    <string name="txt_nombre_prod">Nombre del alimento</string>
     <string name="txt_desc_prod">Descripción del producto</string>
     <string name="txt_precio_prod">Precio</string>
     <string name="txtElegirCategoria">Categoría a la que pertenece:</string>

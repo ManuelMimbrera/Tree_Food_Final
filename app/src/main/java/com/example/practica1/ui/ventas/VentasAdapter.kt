@@ -1,22 +1,22 @@
 package com.example.practica1.ui.ventas
 
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
+import com.example.practica1.ui.categoria.CustomView
 import com.google.gson.Gson
 
 
 class VentasAdapter(val datos: Array<DatosVenta.datosCarrito>): RecyclerView.Adapter<CustomView>(){
+
     override fun getItemCount(): Int {
         return datos.size
     }
@@ -27,8 +27,6 @@ class VentasAdapter(val datos: Array<DatosVenta.datosCarrito>): RecyclerView.Ada
         return CustomView(cellForRow)
     }
     override fun onBindViewHolder(holder: CustomView, position: Int) {
-
-
         var eliminarVen = holder?.itemView.findViewById(R.id.btn_elim_car) as TextView
         var prod = holder?.itemView.findViewById(R.id.txt_producto) as TextView
         var descri = holder?.itemView.findViewById(R.id.txt_descripcion) as TextView
@@ -49,9 +47,11 @@ class VentasAdapter(val datos: Array<DatosVenta.datosCarrito>): RecyclerView.Ada
         prod.text = datos[position].producto
         descri.text = datos[position].descri
         costo.text = datos[position].costo.toString()
+
     }
 }
 
 class CustomView(varV: View): RecyclerView.ViewHolder(varV){
 
 }
+

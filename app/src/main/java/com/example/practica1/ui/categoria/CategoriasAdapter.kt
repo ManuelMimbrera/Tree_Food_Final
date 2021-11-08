@@ -69,8 +69,6 @@ class CategoriasAdapter(val datos:Array<CategoriasFragment.datosCategorias>):Rec
 
 }
 
-
-
 class CustomView(varV: View):RecyclerView.ViewHolder(varV){
 
 }

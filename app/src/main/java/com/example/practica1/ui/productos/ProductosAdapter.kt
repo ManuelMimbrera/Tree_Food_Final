@@ -47,7 +47,7 @@ class ProductosAdapter(val datos: Array<ProductosFragment.datosProducto>): Recyc
 
             var datos = objJson.toJson(datos[position])
 
-            val bundle = bundleOf("datosProduct" to datos)
+            val bundle = bundleOf("datosProducto" to datos)
 
             navController.navigate(R.id.nav_datos_producto, bundle)
         }
