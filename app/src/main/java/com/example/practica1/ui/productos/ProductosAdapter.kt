@@ -33,6 +33,8 @@ class ProductosAdapter(val datos: Array<ProductosFragment.datosProducto>): Recyc
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
 
+        var nomC = holder?.itemView.findViewById(R.id.nomCate) as TextView
+        var idProd = holder?.itemView.findViewById(R.id.textIdProd) as TextView
         var eliminarProd = holder?.itemView.findViewById(R.id.btn_elim_prod) as TextView
         var editarProd = holder?.itemView.findViewById(R.id.btn_act_prod) as TextView
         var nombreProd = holder?.itemView.findViewById(R.id.txt_nombrePro) as TextView
@@ -47,9 +49,9 @@ class ProductosAdapter(val datos: Array<ProductosFragment.datosProducto>): Recyc
 
             var datos = objJson.toJson(datos[position])
 
-            val bundle = bundleOf("datosProducto" to datos)
+            val bundle = bundleOf("datosProduct" to datos)
 
-            navController.navigate(R.id.nav_datos_producto, bundle)
+            navController.navigate(R.id.nav_edit_producto, bundle)
         }
 
         eliminarProd.setOnClickListener{
@@ -64,6 +66,8 @@ class ProductosAdapter(val datos: Array<ProductosFragment.datosProducto>): Recyc
             navController.navigate(R.id.nav_productos_eliminar, bundle)
         }
 
+        nomC.text = datos[position].nomcate
+        idProd.text = datos[position].id.toString()
         nombreProd.text = datos[position].nombre
         descripcionProd.text = datos[position].descripcion
         precioProd.text = datos[position].precio.toString()

@@ -37,6 +37,7 @@
     <string name="txt_precio_prod">Precio</string>
     <string name="txtElegirCategoria">Categoría a la que pertenece:</string>
     <string name="menu_datos_producto">AGREGAR ALIMENTO</string>
+    <string name="menu_edit_producto">Editar alimento</string>
 
     <!-- Menú -->
     <string name="menu">Menú</string>

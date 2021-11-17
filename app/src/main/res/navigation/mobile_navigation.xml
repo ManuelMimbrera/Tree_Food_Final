@@ -65,6 +65,12 @@
         tools:layout="@layout/fragment_datos_producto" />
 
     <fragment
+        android:id="@+id/nav_edit_producto"
+        android:name="com.example.practica1.ui.productos.EditarProducto"
+        android:label="@string/menu_edit_producto"
+        tools:layout="@layout/fragment_editar_producto" />
+
+    <fragment
         android:id="@+id/nav_opciones"
         android:name="com.example.practica1.ui.menu.Menu"
         android:label="@string/menu_producto"
