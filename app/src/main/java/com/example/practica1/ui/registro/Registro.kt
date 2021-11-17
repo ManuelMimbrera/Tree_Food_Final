@@ -27,7 +27,7 @@ class Registro : AppCompatActivity() {
             val email = binding.emailRegistro.editText?.text.toString()
             val pass = binding.passwordRegistro.editText?.text.toString()
 
-            var url = "http://192.168.100.27:8000/api/registro"
+            var url = "http://10.0.76.173:8000/api/registro"
 
             val jSon = Gson()
 

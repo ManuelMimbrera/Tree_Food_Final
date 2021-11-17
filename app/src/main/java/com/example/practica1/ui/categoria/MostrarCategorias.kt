@@ -53,7 +53,7 @@ class MostrarCategorias : Fragment() {
 
         //Toast.makeText(context,"Sincronizando datos", Toast.LENGTH_SHORT).show()
 
-        var urlDatos = "http://192.168.100.27:8000/api/lista_menu"
+        var urlDatos = "http://10.0.76.173:8000/api/lista_menu"
 
         val tipoPeticion = "application/json; charset=utf-8".toMediaType()
 
