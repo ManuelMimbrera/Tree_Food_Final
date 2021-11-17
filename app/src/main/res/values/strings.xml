@@ -59,6 +59,10 @@
     </string-array>
     <string name="menu_datos_categoria">Nueva categoría</string>
 
+    <!-- Pedido -->
+    <string name="menu_pedido">Mis pedidos</string>
+    <string name="menu_pedido_control">Pedidos</string>
+
     <!-- Ventas -->
     <string name="txt_alimento">Alimento a comprar</string>
     <string-array name="opcionesPago">

@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/drawable/ic_baseline_content_paste_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/drawable/ic_baseline_remove_circle_outline_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/drawable/ic_baseline_tapas_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/drawable/splash_background.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/activity_login.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/activity_registro.xml" value="0.25" />
@@ -16,10 +18,11 @@
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_comprar_ahora.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_datos_categoria.xml" value="0.33" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_datos_producto.xml" value="0.33" />
+        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_datos_venta.xml" value="0.2" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_editar_producto.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_eliminar_opcion.xml" value="0.33" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_eliminar_productos.xml" value="0.25" />
-        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_finalizar_venta.xml" value="0.1" />
+        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_finalizar_venta.xml" value="0.18" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_menu.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_mostrar_categorias.xml" value="0.11" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/fragment_recicler_categorias.xml" value="0.17708333333333334" />
@@ -28,7 +31,7 @@
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/opciones_alimentos.xml" value="0.13" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/opciones_menu.xml" value="0.33" />
         <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/layout/productos_row_layout.xml" value="0.33" />
-        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/menu/activity_main_drawer.xml" value="0.18" />
+        <entry key="..\:/Users/Vania/StudioProjects/Tree_Food_Final/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
       </map>
     </option>
   </component>
