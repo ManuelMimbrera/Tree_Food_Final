@@ -54,6 +54,11 @@
         tools:layout="@layout/fragment_eliminar_productos" />
 
     <fragment
+        android:id="@+id/nav_selec_cate"
+        android:name="com.example.practica1.ui.productos.ReciclerCategorias"
+        tools:layout="@layout/fragment_recicler_categorias" />
+
+    <fragment
         android:id="@+id/nav_datos_producto"
         android:name="com.example.practica1.ui.productos.DatosProducto"
         android:label="@string/menu_datos_producto"

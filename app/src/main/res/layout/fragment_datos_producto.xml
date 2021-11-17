@@ -59,6 +59,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_guardar_prod"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:backgroundTint="@color/green"
+            android:text="GUARDAR"
+            app:iconGravity="end" />
+
         <com.google.android.material.textfield.TextInputLayout
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -73,32 +84,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtElegirCategoria" />
+
+            <TextView
+                android:id="@+id/txtNomCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:background="@drawable/round_border"
+                android:backgroundTint="#EFEDED"
+                android:ems="10"
+                android:hint="Categoría"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/opCategorias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="108dp"
+                android:text="@string/btn_select" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/opCategorias"
-            android:layout_width="320dp"
-            android:layout_height="212dp"
-            android:layout_marginTop="248dp"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:paddingLeft="15dp"
-            android:textColor="#FF000000"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_guardar_prod"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:backgroundTint="@color/green"
-            android:text="GUARDAR"
-            app:iconGravity="end" />
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:id="@+id/idenCate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/idenProd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="invisible" />
 </LinearLayout>

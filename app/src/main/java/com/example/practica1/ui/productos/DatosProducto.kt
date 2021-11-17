@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
@@ -58,90 +59,34 @@ class DatosProducto : Fragment() {
 
         var btnGuardarProd = view.findViewById<Button>(R.id.btn_guardar_prod)
 
+        var iden = view.findViewById<TextView>(R.id.idenCate)
+        var idenP = view.findViewById<TextView>(R.id.idenProd)
+        var category = view.findViewById<TextView>(R.id.txtNomCategory)
         var nombreProdu = view.findViewById<TextView>(R.id.txt_nombreP)
         var descripcionProdu = view.findViewById<TextView>(R.id.txt_descripcionP)
         var precioProdu = view.findViewById<TextView>(R.id.txt_precioP)
         var categorias = view.findViewById<RecyclerView>(R.id.opCategorias)
 
+        categorias.setOnClickListener {
+            val navController = view.findNavController()
+            navController.navigate(R.id.nav_selec_cate)
+        }
+
         var objJson = Gson()
 
         var datosProd = objJson.fromJson(arguments?.getString("datosProduct"),
-            datosProducto::class.java)
+            ProductosFragment.datosProducto::class.java)
 
+        var datosCate = objJson.fromJson(arguments?.getString("Id"),
+            ReciclerCategorias.datosCategoria::class.java)
 
+        iden.text = datosCate?.id.toString()
+        category.text = datosCate?.nomcate
+
+        idenP.text = datosProd?.id.toString()
         nombreProdu.text = datosProd?.nombre
         descripcionProdu.text = datosProd?.descripcion
         precioProdu.text = datosProd?.precio.toString()
-
-        //Mostrar categorías
-        //Toast.makeText(context,"Sincronizando datos", Toast.LENGTH_SHORT).show()
-
-        var urlDatos = "http://10.0.76.173:8000/api/lista_categorias"
-
-        val tipoPeticion = "application/json; charset=utf-8".toMediaType()
-
-        var njson = Gson()
-
-        var datosJsonCat = njson.toJson(CategoriasFragment.datosPeticion("%"))
-
-        var request = Request.Builder().url(urlDatos).post(datosJsonCat.toRequestBody(tipoPeticion))
-
-        val dbHelp = dbHelper(context as Context)
-        val dbRead = dbHelp.readableDatabase
-        val cursor = dbRead.query(
-            dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-            null,             // The array of columns to return (pass null to get all)
-            null,              // The columns for the WHERE clause
-            null,          // The values for the WHERE clause
-            null,             // don't group the rows
-            null,              // don't filter by row groups
-            null               // The sort order
-        )
-
-        var token = ""
-
-        with(cursor) {
-            moveToNext()
-
-            token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
-        }
-
-        request.addHeader("Accept","application/json")
-        request.addHeader("Authorization","Bearer " + token)
-
-        var cliente = OkHttpClient()
-
-        cliente.newCall(request.build()).enqueue(object : Callback {
-            override fun onResponse(call: Call, response: Response) {
-                var textoJson = response?.body?.string()
-
-                //print(textoJson)
-
-                val actMain = activity as Activity
-
-                actMain.runOnUiThread{
-                    var datosJson = Gson()
-
-                    var clientes = datosJson?.fromJson(textoJson, Array<datosCategoria>::class.java)
-
-                    categorias.adapter = NuevaCategorias(clientes)
-
-                    //Toast.makeText(context,"¡Sincronización completa!", Toast.LENGTH_SHORT).show()
-                }
-
-            }
-
-            override fun onFailure(call: Call, e: IOException) {
-                val actMain = activity as Activity
-
-                actMain.runOnUiThread{
-                    Toast.makeText(context,"Falló la petición" + e.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-
-        categorias.layoutManager = LinearLayoutManager(context)
-        //
 
         btnGuardarProd.setOnClickListener{
 
@@ -155,9 +100,9 @@ class DatosProducto : Fragment() {
                 datosProd?.id,
                 nombreProdu.text.toString(),
                 descripcionProdu.text.toString(),
-                precioProdu.text.toString().toFloat()
-            )
-            )
+                precioProdu.text.toString().toFloat(),
+                datosCate?.id,
+            ))
 
             var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
@@ -210,16 +155,16 @@ class DatosProducto : Fragment() {
 
     }
 
-    class datosCategoria(
-        val id: Int?,
-        val nomCate: String,
-    )
-
     data class datosProducto(
         val id: Int?,
         val nombre: String,
         val descripcion: String,
         val precio: Float,
+        val id_categoria: Int?,
+    )
+
+    data class datosCategoria(
+        val nomcate: String,
     )
 
 
