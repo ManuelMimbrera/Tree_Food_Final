@@ -31,6 +31,8 @@ class VentasAdapter(val datos: Array<DatosVenta.datosCarrito>): RecyclerView.Ada
         var prod = holder?.itemView.findViewById(R.id.txt_producto) as TextView
         var descri = holder?.itemView.findViewById(R.id.txt_descripcion) as TextView
         var costo = holder?.itemView.findViewById(R.id.txt_costo) as TextView
+        var resultado = holder?.itemView.findViewById<TextView>(R.id.res)
+        var idCar = holder?.itemView.findViewById(R.id.textIdCarrito) as TextView
 
         eliminarVen.setOnClickListener{
             val navController = holder?.itemView?.findNavController()
@@ -44,10 +46,11 @@ class VentasAdapter(val datos: Array<DatosVenta.datosCarrito>): RecyclerView.Ada
             navController.navigate(R.id.nav_eliminar_ven, bundle)
         }
 
-        prod.text = datos[position].producto
-        descri.text = datos[position].descri
-        costo.text = datos[position].costo.toString()
-
+        prod.text = datos[position].nombre
+        descri.text = datos[position].descripcion
+        costo.text = datos[position].precio.toString()
+        resultado.text = datos[position].cantidad.toString()
+        idCar.text = datos[position].id.toString()
     }
 }
 

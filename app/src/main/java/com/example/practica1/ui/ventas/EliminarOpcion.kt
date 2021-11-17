@@ -60,11 +60,11 @@ class EliminarOpcion : DialogFragment() {
 
         var objJson = Gson()
 
-        var datosProd = objJson.fromJson(arguments?.getString("datosCompra"), datosVenta::class.java)
+        var datosProd = objJson.fromJson(arguments?.getString("datosCompra"), DatosVenta.datosCarrito::class.java)
 
-        nombreVen.text = datosProd?.producto
-        descripcionVen.text = datosProd?.descri
-        precioVen.text = datosProd?.costo.toString()
+        nombreVen.text = datosProd?.nombre
+        descripcionVen.text = datosProd?.descripcion
+        precioVen.text = datosProd?.precio.toString()
 
         btnEliminarVen.setOnClickListener{
 
@@ -74,14 +74,7 @@ class EliminarOpcion : DialogFragment() {
 
             val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonProd = jSon.toJson(
-                datosVenta(
-                    datosProd?.id,
-                    nombreVen.text.toString(),
-                    descripcionVen.text.toString(),
-                    precioVen.text.toString().toFloat()
-                )
-            )
+            var datosJsonProd = jSon.toJson(datosCarrito(datosProd?.id))
 
             var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
@@ -135,11 +128,8 @@ class EliminarOpcion : DialogFragment() {
         return view
     }
 
-    data class datosVenta(
+    data class datosCarrito(
         val id: Int?,
-        val producto: String,
-        val descri: String,
-        val costo: Float
     )
 
     companion object {

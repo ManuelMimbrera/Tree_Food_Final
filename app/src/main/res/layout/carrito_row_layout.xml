@@ -141,6 +141,17 @@
                             app:layout_constraintTop_toBottomOf="@+id/txt_descripcion"
                             app:layout_constraintVertical_bias="0.0" />
 
+                        <TextView
+                            android:id="@+id/textIdCarrito"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="84dp"
+                            android:text="TextView"
+                            android:visibility="invisible"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <Button
                             android:id="@+id/btn_elim_car"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
