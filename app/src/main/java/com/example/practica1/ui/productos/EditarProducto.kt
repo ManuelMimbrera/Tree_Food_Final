@@ -74,7 +74,7 @@ class EditarProducto : Fragment() {
 
         btnGuardarProd.setOnClickListener{
 
-            var url = "http://192.168.100.27:8000/api/guardar_productos"
+            var url = "http://10.0.76.173:8000/api/guardar_productos"
 
             val jSon = Gson()
 
