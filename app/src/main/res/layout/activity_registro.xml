@@ -16,23 +16,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nomUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txt_nomUsu" />
+        android:hint="@string/txt_nomUsu"
+        app:boxBackgroundColor="@color/white">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txt_usuario" />
+        android:hint="@string/txt_usuario"
+        app:boxBackgroundColor="@color/white">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txt_contrasena" />
+        android:hint="@string/txt_contrasena"
+        app:boxBackgroundColor="@color/white">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/terminarRegistro"

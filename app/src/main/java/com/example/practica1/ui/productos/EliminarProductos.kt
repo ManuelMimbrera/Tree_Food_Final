@@ -53,7 +53,7 @@ class EliminarProductos : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_eliminar_productos, container, false)
 
         var btnEliminarProd = view.findViewById<Button>(R.id.btn_eliminar_produ)
-
+        var id = view.findViewById<TextView>(R.id.txtId)
         var nombreProdu = view.findViewById<TextView>(R.id.txt_nombreProdu)
         var descripcionProdu = view.findViewById<TextView>(R.id.txt_descripcionProdu)
         var precioProdu = view.findViewById<TextView>(R.id.txt_precioProdu)
@@ -61,8 +61,9 @@ class EliminarProductos : DialogFragment() {
         var objJson = Gson()
 
         var datosProd = objJson.fromJson(arguments?.getString("datosProducto"),
-            datosProducto::class.java)
+            ProductosFragment.datosProducto::class.java)
 
+        id.text = datosProd?.id.toString()
         nombreProdu.text = datosProd?.nombre
         descripcionProdu.text = datosProd?.descripcion
         precioProdu.text = datosProd?.precio.toString()
@@ -75,11 +76,7 @@ class EliminarProductos : DialogFragment() {
 
             val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonProd = jSon.toJson(datosProducto(datosProd?.id,
-                nombreProdu.text.toString(),
-                descripcionProdu.text.toString(),
-                precioProdu.text.toString().toFloat()
-                ))
+            var datosJsonProd = jSon.toJson(datosProducto(datosProd?.id))
 
             var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
@@ -134,9 +131,6 @@ class EliminarProductos : DialogFragment() {
 
     data class datosProducto(
         val id: Int?,
-        val nombre: String,
-        val descripcion: String,
-        val precio: Float
     )
 
     companion object {

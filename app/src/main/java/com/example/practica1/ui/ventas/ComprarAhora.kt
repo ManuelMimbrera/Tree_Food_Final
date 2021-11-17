@@ -1,4 +1,4 @@
-package com.example.practica1.ui.productos
+package com.example.practica1.ui.ventas
 
 import android.app.Activity
 import android.content.Context
@@ -7,20 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.*
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.categoria.CategoriasAdapter
-import com.example.practica1.ui.categoria.CategoriasFragment
-import com.example.practica1.ui.categoria.DatosCategoria
-import com.example.practica1.ui.ventas.DatosVenta
-import com.google.android.material.snackbar.Snackbar
+import com.example.practica1.ui.menu.Menu
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -34,10 +24,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DatosProducto.newInstance] factory method to
+ * Use the [ComprarAhora.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DatosProducto : Fragment() {
+class ComprarAhora : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -55,56 +45,70 @@ class DatosProducto : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_datos_producto, container, false)
+        val view = inflater.inflate(R.layout.fragment_comprar_ahora, container, false)
 
-        var btnGuardarProd = view.findViewById<Button>(R.id.btn_guardar_prod)
+        var btnFinalizar = view.findViewById<Button>(R.id.btn_finalizar)
+        var preciofinal = view.findViewById<TextView>(R.id.txt_precioFinal)
+        var identi = view.findViewById<TextView>(R.id.identificador)
+        var alim = view.findViewById<TextView>(R.id.Alimento)
+        var precio = view.findViewById<TextView>(R.id.Precio)
+        var cantidad = view.findViewById<TextView>(R.id.Cantidad)
+        var descripcion = view.findViewById<TextView>(R.id.textPago)
+        var spinner = view.findViewById<Spinner>(R.id.spTipoPago)
+        val pago = resources.getStringArray(R.array.opcionesPago)
 
-        var iden = view.findViewById<TextView>(R.id.idenCate)
-        var idenP = view.findViewById<TextView>(R.id.idenProd)
-        var category = view.findViewById<TextView>(R.id.txtNomCategory)
-        var nombreProdu = view.findViewById<TextView>(R.id.txt_nombreP)
-        var descripcionProdu = view.findViewById<TextView>(R.id.txt_descripcionP)
-        var precioProdu = view.findViewById<TextView>(R.id.txt_precioP)
-        var categorias = view.findViewById<RecyclerView>(R.id.opCategorias)
+        ArrayAdapter.createFromResource(context as Context,R.array.opcionesPago,android.R.layout.simple_spinner_item).also {
+                adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
 
-        categorias.setOnClickListener {
-            val navController = view.findNavController()
-            navController.navigate(R.id.nav_selec_cate)
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                descripcion.text =  pago[position]
+                if(pago[position] == "Efectivo"){
+                    descripcion.text = "Nuestros repartidores no llevan más de $200 de cambio."
+                } else if(pago[position] == "Tarjeta"){
+                    descripcion.text = "Nuestros repartidores te llevarán la terminal bancaria."
+                }
+            }
         }
 
         var objJson = Gson()
 
-        var datosProd = objJson.fromJson(arguments?.getString("datosProduct"),
-            ProductosFragment.datosProducto::class.java)
+        var datosProd = objJson.fromJson(arguments?.getString("datosVenta"), Menu.datosProducto::class.java)
 
-        var datosCate = objJson.fromJson(arguments?.getString("Id"),
-            ReciclerCategorias.datosCategoria::class.java)
+        identi.text = datosProd?.id.toString()
+        alim.text = datosProd?.nombre.toString()
+        precio.text = datosProd?.precio.toString()
 
-        iden.text = datosCate?.id.toString()
-        category.text = datosCate?.nomcate
+        btnFinalizar.setOnClickListener {
 
-        idenP.text = datosProd?.id.toString()
-        nombreProdu.text = datosProd?.nombre
-        descripcionProdu.text = datosProd?.descripcion
-        precioProdu.text = datosProd?.precio.toString()
 
-        btnGuardarProd.setOnClickListener{
-
-            var url = "http://10.0.76.173:8000/api/guardar_productos"
+            var url = "http://10.0.76.173:8000/api/guardar_venta"
 
             val jSon = Gson()
 
             val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonProd = jSon.toJson(datosProducto(
-                datosProd?.id,
-                nombreProdu.text.toString(),
-                descripcionProdu.text.toString(),
-                precioProdu.text.toString().toFloat(),
-                datosCate?.id,
-            ))
+            var datosJsonVen = jSon.toJson(
+                datosVenta(
+                    preciofinal.text.toString().toFloat(),
+                    identi.text.toString().toInt(),
+                    cantidad.text.toString().toFloat(),
+                    descripcion.text.toString()
+                )
+            )
 
-            var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
+            var request = Request.Builder().url(url).post(datosJsonVen.toRequestBody(tipoPet))
 
             val dbHelp = dbHelper(context as Context)
             val dbRead = dbHelp.readableDatabase
@@ -136,8 +140,7 @@ class DatosProducto : Fragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Snackbar.make(btnGuardarProd , "Alimento guardado", Snackbar.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(context, "¡Tu compra ha sido realizada!", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -148,27 +151,18 @@ class DatosProducto : Fragment() {
                     }
                 }
             })
+
         }
 
-
         return view
-
     }
 
-    data class datosProducto(
-        val id: Int?,
-        val nombre: String,
-        val descripcion: String,
-        val precio: Float,
-        val id_categoria: Int?,
+    class datosVenta(
+        val total: Float,
+        val id_producto: Int,
+        val cantidad: Float,
+        val pago: String
     )
-
-    data class datosCategoria(
-        val nomcate: String,
-    )
-
-
-
 
     companion object {
         /**
@@ -177,12 +171,12 @@ class DatosProducto : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DatosProducto.
+         * @return A new instance of fragment ComprarAhora.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DatosProducto().apply {
+            ComprarAhora().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

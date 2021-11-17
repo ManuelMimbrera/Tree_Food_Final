@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
+import com.example.practica1.ui.categoria.MostrarCategorias
 import com.example.practica1.ui.productos.ProductosAdapter
 import com.example.practica1.ui.productos.ProductosFragment
 import com.google.gson.Gson
@@ -59,13 +60,16 @@ class Menu : Fragment() {
 
         //Toast.makeText(context,"Sincronizando datos", Toast.LENGTH_SHORT).show()
 
-        var urlDatos = "http://10.0.76.173:8000/api/lista_productos"
+        var urlDatos = "http://10.0.76.173:8000/api/categorias_productos"
 
         val tipoPeticion = "application/json; charset=utf-8".toMediaType()
 
         var njson = Gson()
 
-        var datosJsonPro = njson.toJson(datosPeticion("%"))
+        var datosCate = njson.fromJson(arguments?.getString("Id"),
+            MostrarCategorias.datosCategorias::class.java)
+
+        var datosJsonPro = njson.toJson(datosCate)
 
         var request = Request.Builder().url(urlDatos).post(datosJsonPro.toRequestBody(tipoPeticion))
 

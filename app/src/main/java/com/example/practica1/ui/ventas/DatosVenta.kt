@@ -137,11 +137,12 @@ class DatosVenta : DialogFragment() {
         return view
     }
 
-    data class datosCarrito(
-        val id: Int?,
-        val producto: String,
-        val descri: String,
-        val costo: Float,
+    class datosCarrito(
+        val id: Int,
+        val nombre: String,
+        val descripcion: String,
+        val precio: Float,
+        val cantidad: Int
     )
 
     data class datosPeticion(

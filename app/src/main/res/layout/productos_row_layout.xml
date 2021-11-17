@@ -50,6 +50,12 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
+                        <TextView
+                            android:id="@+id/nomCate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="TextView" />
                         <!-- Title, secondary and supporting text -->
                         <TextView
                             android:id="@+id/txt_nombrePro"
@@ -79,6 +85,12 @@
                             android:textAppearance="?attr/textAppearanceBody2"
                             android:textColor="?android:attr/textColorSecondary" />
 
+                        <TextView
+                            android:id="@+id/textIdProd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:visibility="invisible"/>
                     </LinearLayout>
 
                     <!-- Buttons -->

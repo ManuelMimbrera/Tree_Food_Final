@@ -25,9 +25,15 @@
 
     <fragment
         android:id="@+id/nav_menu"
-        android:name="com.example.practica1.ui.menu.Menu"
+        android:name="com.example.practica1.ui.categoria.MostrarCategorias"
         android:label="@string/menu_producto"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_mostrar_categorias" />
+
+    <fragment
+        android:id="@+id/nav_datos_alimentos"
+        android:name="com.example.practica1.ui.categoria.MostrarCategorias"
+        android:label="@string/menu_datos_producto"
+        tools:layout="@layout/opciones_alimentos" />
 
     <fragment
         android:id="@+id/nav_datos_menu"
@@ -48,10 +54,27 @@
         tools:layout="@layout/fragment_eliminar_productos" />
 
     <fragment
+        android:id="@+id/nav_selec_cate"
+        android:name="com.example.practica1.ui.productos.ReciclerCategorias"
+        tools:layout="@layout/fragment_recicler_categorias" />
+
+    <fragment
         android:id="@+id/nav_datos_producto"
         android:name="com.example.practica1.ui.productos.DatosProducto"
         android:label="@string/menu_datos_producto"
         tools:layout="@layout/fragment_datos_producto" />
+
+    <fragment
+        android:id="@+id/nav_edit_producto"
+        android:name="com.example.practica1.ui.productos.EditarProducto"
+        android:label="@string/menu_edit_producto"
+        tools:layout="@layout/fragment_editar_producto" />
+
+    <fragment
+        android:id="@+id/nav_opciones"
+        android:name="com.example.practica1.ui.menu.Menu"
+        android:label="@string/menu_producto"
+        tools:layout="@layout/fragment_menu" />
 
     <fragment
         android:id="@+id/nav_categorias"
@@ -108,5 +131,11 @@
         android:name="com.example.practica1.ui.promocion.RegisterPromoFragment"
         android:label="RegisterPromoFragment"
         tools:layout="@layout/fragment_register_promo"/>
+
+    <fragment
+        android:id="@+id/nav_comprar"
+        android:name="com.example.practica1.ui.ventas.ComprarAhora"
+        android:label="@string/menu_finalizar"
+        tools:layout="@layout/fragment_comprar_ahora" />
 
 </navigation>

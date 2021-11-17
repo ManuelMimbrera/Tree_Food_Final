@@ -37,6 +37,7 @@
     <string name="txt_precio_prod">Precio</string>
     <string name="txtElegirCategoria">Categoría a la que pertenece:</string>
     <string name="menu_datos_producto">AGREGAR ALIMENTO</string>
+    <string name="menu_edit_producto">Editar alimento</string>
 
     <!-- Menú -->
     <string name="menu">Menú</string>
@@ -58,9 +59,18 @@
     </string-array>
     <string name="menu_datos_categoria">Nueva categoría</string>
 
+    <!-- Pedido -->
+    <string name="menu_pedido">Mis pedidos</string>
+    <string name="menu_pedido_control">Pedidos</string>
+
     <!-- Ventas -->
+    <string name="txt_alimento">Alimento a comprar</string>
+    <string-array name="opcionesPago">
+        <item>Efectivo</item>
+        <item>Tarjeta</item>
+    </string-array>
     <string name="menu_carrito">Carrito</string>
-    <string name="menu_finalizar">Comprar producto</string>
+    <string name="menu_finalizar">Comprar alimentos</string>
     <string name="txt_list_ven">COMPRAR ALIMENTOS</string>
     <string name="txt_pagar_total">Total a pagar</string>
     <string name="txt_pago">Efectivo</string>
@@ -87,6 +97,8 @@
     <string name="btn_actualizar">Actualizar</string>
     <string name="btn_eliminar">Eliminar</string>
     <string name="btn_guardar_datos">Guardar datos</string>
+    <string name="btn_select">Selecciona</string>
+    <string name="btn_elegir">Elegir</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

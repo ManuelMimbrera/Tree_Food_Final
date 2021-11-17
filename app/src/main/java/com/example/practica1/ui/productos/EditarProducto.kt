@@ -8,19 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.categoria.CategoriasAdapter
-import com.example.practica1.ui.categoria.CategoriasFragment
-import com.example.practica1.ui.categoria.DatosCategoria
-import com.example.practica1.ui.ventas.DatosVenta
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -34,10 +25,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DatosProducto.newInstance] factory method to
+ * Use the [EditarProducto.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DatosProducto : Fragment() {
+class EditarProducto : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -55,38 +46,31 @@ class DatosProducto : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_datos_producto, container, false)
+        val view = inflater.inflate(R.layout.fragment_editar_producto, container, false)
 
         var btnGuardarProd = view.findViewById<Button>(R.id.btn_guardar_prod)
 
-        var iden = view.findViewById<TextView>(R.id.idenCate)
+        var idenC = view.findViewById<TextView>(R.id.idenCate)
         var idenP = view.findViewById<TextView>(R.id.idenProd)
-        var category = view.findViewById<TextView>(R.id.txtNomCategory)
+        var category2 = view.findViewById<TextView>(R.id.txtNomCategory)
         var nombreProdu = view.findViewById<TextView>(R.id.txt_nombreP)
         var descripcionProdu = view.findViewById<TextView>(R.id.txt_descripcionP)
         var precioProdu = view.findViewById<TextView>(R.id.txt_precioP)
-        var categorias = view.findViewById<RecyclerView>(R.id.opCategorias)
 
-        categorias.setOnClickListener {
-            val navController = view.findNavController()
-            navController.navigate(R.id.nav_selec_cate)
-        }
 
         var objJson = Gson()
 
         var datosProd = objJson.fromJson(arguments?.getString("datosProduct"),
             ProductosFragment.datosProducto::class.java)
 
-        var datosCate = objJson.fromJson(arguments?.getString("Id"),
-            ReciclerCategorias.datosCategoria::class.java)
-
-        iden.text = datosCate?.id.toString()
-        category.text = datosCate?.nomcate
 
         idenP.text = datosProd?.id.toString()
+        idenC.text = datosProd?.id_categoria.toString()
+        category2.text = datosProd?.nomcate.toString()
         nombreProdu.text = datosProd?.nombre
         descripcionProdu.text = datosProd?.descripcion
         precioProdu.text = datosProd?.precio.toString()
+
 
         btnGuardarProd.setOnClickListener{
 
@@ -96,13 +80,15 @@ class DatosProducto : Fragment() {
 
             val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonProd = jSon.toJson(datosProducto(
-                datosProd?.id,
-                nombreProdu.text.toString(),
-                descripcionProdu.text.toString(),
-                precioProdu.text.toString().toFloat(),
-                datosCate?.id,
-            ))
+            var datosJsonProd = jSon.toJson(
+                DatosProducto.datosProducto(
+                    datosProd?.id,
+                    nombreProdu.text.toString(),
+                    descripcionProdu.text.toString(),
+                    precioProdu.text.toString().toFloat(),
+                    datosProd?.id_categoria,
+                )
+            )
 
             var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
@@ -136,8 +122,7 @@ class DatosProducto : Fragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Snackbar.make(btnGuardarProd , "Alimento guardado", Snackbar.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(context, "Datos guardados", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -150,25 +135,8 @@ class DatosProducto : Fragment() {
             })
         }
 
-
         return view
-
     }
-
-    data class datosProducto(
-        val id: Int?,
-        val nombre: String,
-        val descripcion: String,
-        val precio: Float,
-        val id_categoria: Int?,
-    )
-
-    data class datosCategoria(
-        val nomcate: String,
-    )
-
-
-
 
     companion object {
         /**
@@ -177,12 +145,12 @@ class DatosProducto : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DatosProducto.
+         * @return A new instance of fragment EditarProducto.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DatosProducto().apply {
+            EditarProducto().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

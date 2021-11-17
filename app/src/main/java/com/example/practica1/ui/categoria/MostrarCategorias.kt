@@ -1,4 +1,4 @@
-package com.example.practica1.ui.productos
+package com.example.practica1.ui.categoria
 
 import android.app.Activity
 import android.content.Context
@@ -7,15 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.categoria.CategoriasFragment
-import com.example.practica1.ui.productos.ProductosAdapter
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -29,10 +25,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ProductosFragment.newInstance] factory method to
+ * Use the [MostrarCategorias.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProductosFragment : Fragment() {
+class MostrarCategorias : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,20 +46,14 @@ class ProductosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_productos, container, false)
+        val view = inflater.inflate(R.layout.fragment_mostrar_categorias, container, false)
 
-        var btnProductos = view.findViewById<Button>(R.id.btnProducto)
-        var listaProductos = view.findViewById<RecyclerView>(R.id.Lista_productos)
+        var listaAlimentos = view.findViewById<RecyclerView>(R.id.listaAlimentos)
 
-
-        btnProductos.setOnClickListener{
-            val navController = view.findNavController()
-            navController.navigate(R.id.nav_datos_producto)
-        }
 
         //Toast.makeText(context,"Sincronizando datos", Toast.LENGTH_SHORT).show()
 
-        var urlDatos = "http://10.0.76.173:8000/api/lista_productos"
+        var urlDatos = "http://10.0.76.173:8000/api/lista_menu"
 
         val tipoPeticion = "application/json; charset=utf-8".toMediaType()
 
@@ -109,9 +99,9 @@ class ProductosFragment : Fragment() {
                 actMain.runOnUiThread{
                     var datosJson = Gson()
 
-                    var productos = datosJson?.fromJson(textoJson, Array<datosProducto>::class.java)
+                    var productos = datosJson?.fromJson(textoJson, Array<datosCategorias>::class.java)
 
-                    listaProductos.adapter = ProductosAdapter(productos)
+                    listaAlimentos.adapter = AlimentosAdapter(productos)
 
                     //Toast.makeText(context,"¡Sincronización completa!", Toast.LENGTH_SHORT).show()
                 }
@@ -127,25 +117,20 @@ class ProductosFragment : Fragment() {
             }
         })
 
-        listaProductos.layoutManager = LinearLayoutManager(context)
+        listaAlimentos.layoutManager = LinearLayoutManager(context)
+
         return view
     }
 
-    class datosProducto(
+    class datosCategorias(
         val id: Int,
-        val nombre: String,
-        val descripcion: String,
-        val precio: Float,
         val nomcate: String,
-        val id_categoria: Int,
+        val descate: String,
+        val estado: String
     )
 
-    fun sincronizar(listaProductos: RecyclerView){
-
-    }
-
     data class datosPeticion(
-        val palabra: String
+        val nombre: String
     )
 
     companion object {
@@ -155,12 +140,12 @@ class ProductosFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductosFragment.
+         * @return A new instance of fragment MostrarCategorias.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ProductosFragment().apply {
+            MostrarCategorias().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
