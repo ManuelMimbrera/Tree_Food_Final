@@ -1,9 +1,12 @@
 package com.example.practica1.ui.menu
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -22,6 +25,11 @@ import java.io.IOException
 
 class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<CustomView>() {
 
+    var contar: Int = 1;
+    private lateinit var sumar: Button
+    private lateinit var restar: Button
+    private lateinit var resultado: TextView
+
     override fun getItemCount(): Int {
         return datos.size
     }
@@ -36,15 +44,58 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 
         var finalizarProd = holder?.itemView.findViewById(R.id.btnComprar) as TextView
         var agregarProd = holder?.itemView.findViewById(R.id.btnAgregarCarro) as TextView
+        var idProd = holder?.itemView.findViewById(R.id.textIdProducto) as TextView
         var nombreProd = holder?.itemView.findViewById(R.id.txt_nombrePro) as TextView
         var descripcionProd = holder?.itemView.findViewById(R.id.txt_descripcionPro) as TextView
         var precioProd = holder?.itemView.findViewById(R.id.txt_precioPro) as TextView
 
+        //Implementación del contador
+        var contar = 1
+        var sumar = holder?.itemView.findViewById<Button>(R.id.max)
+        var restar = holder?.itemView.findViewById<Button>(R.id.min)
+        restar.setEnabled(false)
+        var resultado = holder?.itemView.findViewById<TextView>(R.id.res)
+        resultado.addTextChangedListener(object : TextWatcher {
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.toString().equals("1")){
+                    restar.setEnabled(false);
+                }else{
+                    restar.setEnabled(true);
+                }
+                if(s.toString().equals("10")){
+                    sumar.setEnabled(false);
+                }else{
+                    sumar.setEnabled(true);
+                }
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().equals("1")){
+                    restar.setEnabled(false);
+                }else{
+                    restar.setEnabled(true);
+                }
+                if(s.toString().equals("10")){
+                    sumar.setEnabled(false);
+                }else{
+                    sumar.setEnabled(true);
+                }
+            }
+        });
+        sumar.setOnClickListener{
+            contar++
+            resultado.text = "$contar"
+        }
+        restar.setOnClickListener{
+            contar--
+            resultado.text = "$contar"
+        }
+        resultado.text = "$contar"
 
+        //agregar al carrito
         agregarProd.setOnClickListener{
-            Snackbar.make(agregarProd, "Ha sido agregado al carrito", Snackbar.LENGTH_SHORT)
-                .show()
 
             var url = "http://10.0.76.173:8000/api/guardar_opciones"
 
@@ -54,9 +105,8 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 
             var datosJsonProd = jSon.toJson(
                 datosCarritos(
-                    nombreProd.text.toString(),
-                    descripcionProd.text.toString(),
-                    precioProd.text.toString().toFloat()
+                    idProd.text.toString().toInt(),
+                    resultado.text.toString().toInt(),
                 )
             )
 
@@ -85,6 +135,9 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
             request.addHeader("Accept","application/json")
             request.addHeader("Authorization","Bearer " + token)
 
+            Snackbar.make(agregarProd, "Ha sido agregado al carrito", Snackbar.LENGTH_SHORT)
+                .show()
+
             var client = OkHttpClient()
 
             client.newCall(request.build()).enqueue(object : Callback {
@@ -107,9 +160,10 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 
             val bundle = bundleOf("datosVenta" to datos)
 
-            navController.navigate(R.id.nav_finalizar_ven, bundle)
+            navController.navigate(R.id.nav_comprar, bundle)
         }
 
+        idProd.text = datos[position].id.toString()
         nombreProd.text = datos[position].nombre
         descripcionProd.text = datos[position].descripcion
         precioProd.text = datos[position].precio.toString()
@@ -117,9 +171,8 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 }
 
 data class datosCarritos(
-    val producto: String,
-    val descri: String,
-    val costo: Float
+    val id_producto: Int?,
+    val cantidad: Int,
 )
 
 class CustomView(varV: View): RecyclerView.ViewHolder(varV){

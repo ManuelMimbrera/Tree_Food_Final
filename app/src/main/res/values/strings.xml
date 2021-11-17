@@ -59,8 +59,13 @@
     <string name="menu_datos_categoria">Nueva categoría</string>
 
     <!-- Ventas -->
+    <string name="txt_alimento">Alimento a comprar</string>
+    <string-array name="opcionesPago">
+        <item>Efectivo</item>
+        <item>Tarjeta</item>
+    </string-array>
     <string name="menu_carrito">Carrito</string>
-    <string name="menu_finalizar">Comprar producto</string>
+    <string name="menu_finalizar">Comprar alimentos</string>
     <string name="txt_list_ven">COMPRAR ALIMENTOS</string>
     <string name="txt_pagar_total">Total a pagar</string>
     <string name="txt_pago">Efectivo</string>

@@ -25,9 +25,15 @@
 
     <fragment
         android:id="@+id/nav_menu"
-        android:name="com.example.practica1.ui.menu.Menu"
+        android:name="com.example.practica1.ui.categoria.MostrarCategorias"
         android:label="@string/menu_producto"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_mostrar_categorias" />
+
+    <fragment
+        android:id="@+id/nav_datos_alimentos"
+        android:name="com.example.practica1.ui.categoria.MostrarCategorias"
+        android:label="@string/menu_datos_producto"
+        tools:layout="@layout/opciones_alimentos" />
 
     <fragment
         android:id="@+id/nav_datos_menu"
@@ -94,5 +100,11 @@
         android:name="com.example.practica1.ui.ventas.EliminarOpcion"
         android:label="@string/menu_elim_prod"
         tools:layout="@layout/fragment_eliminar_opcion" />
+
+    <fragment
+        android:id="@+id/nav_comprar"
+        android:name="com.example.practica1.ui.ventas.ComprarAhora"
+        android:label="@string/menu_finalizar"
+        tools:layout="@layout/fragment_comprar_ahora" />
 
 </navigation>
