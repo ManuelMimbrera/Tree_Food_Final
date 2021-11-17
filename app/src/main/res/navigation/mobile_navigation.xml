@@ -88,5 +88,25 @@
         android:name="com.example.practica1.ui.ventas.EliminarOpcion"
         android:label="@string/menu_elim_prod"
         tools:layout="@layout/fragment_eliminar_opcion" />
+    <fragment
+        android:id="@+id/nav_confirmar_venta"
+        android:name="com.example.practica1.ui.compra.ConfirmarVentaFragment"
+        android:label="fragment_confirmar_venta"
+        tools:layout="@layout/fragment_confirmar_venta" />
+    <fragment
+        android:id="@+id/nav_promocion"
+        android:name="com.example.practica1.ui.promocion.PromocionFragment"
+        android:label="fragment_promocion"
+        tools:layout="@layout/fragment_promocion" />
+    <fragment
+        android:id="@+id/nav_eliminar_promo"
+        android:name="com.example.practica1.ui.promocion.EliminarPromocionFragment"
+        android:label="fragment_eliminar_promocion"
+        tools:layout="@layout/fragment_eliminar_promocion" />
+    <fragment
+        android:id="@+id/nav_register_promo"
+        android:name="com.example.practica1.ui.promocion.RegisterPromoFragment"
+        android:label="RegisterPromoFragment"
+        tools:layout="@layout/fragment_register_promo"/>
 
 </navigation>

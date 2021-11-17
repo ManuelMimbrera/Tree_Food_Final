@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_baseline_category_24"
             android:title="@string/menu_categoria" />
         <item
+            android:id="@+id/nav_promocion"
+            android:icon="@drawable/ic_baseline_style_24"
+            android:title="Promociones" />
+        <item
             android:id="@+id/nav_ventas"
             android:icon="@drawable/ic_baseline_add_shopping_cart_24"
             android:title="@string/menu_carrito" />

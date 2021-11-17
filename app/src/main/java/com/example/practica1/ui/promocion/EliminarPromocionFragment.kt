@@ -1,4 +1,4 @@
-package com.example.practica1.ui.compra
+package com.example.practica1.ui.promocion
 
 import android.app.Activity
 import android.content.Context
@@ -10,10 +10,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.findNavController
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.productos.DatosProducto
+import com.example.practica1.ui.productos.EliminarProductos
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
@@ -28,10 +28,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ConfirmarVentaFragment.newInstance] factory method to
+ * Use the [EliminarPromocionFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ConfirmarVentaFragment : Fragment() {
+class EliminarPromocionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -49,30 +49,40 @@ class ConfirmarVentaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-      var view = inflater.inflate(R.layout.fragment_confirmar_venta, container, false)
+        var view = inflater.inflate(R.layout.fragment_eliminar_promocion, container, false)
 
-        var btnGuardarVenta = view.findViewById<Button>(R.id.btn_finalizar_venta)
-        var total = view.findViewById<TextView>(R.id.txt_total)
+        var btnEliminarPromo = view.findViewById<Button>(R.id.btn_eliminar_promo)
 
-        val jSon = Gson()
+        var nombrePromo = view.findViewById<TextView>(R.id.txt_nombrePromo)
+        var nombreProduct = view.findViewById<TextView>(R.id.txt_nombreProduc)
+        var descripcionPromo = view.findViewById<TextView>(R.id.txt_descripcionPromocion)
 
-        var datosVen = jSon.fromJson(arguments?.getString("datosTotal"), ConfirmarVentaFragment.datosTotal::class.java)
+        var objJson = Gson()
 
-        total.text = datosVen?.total.toString()
+        var datosPromo = objJson.fromJson(arguments?.getString("datosPromocion"), EliminarPromocionFragment.datosPromocion::class.java)
 
-        btnGuardarVenta.setOnClickListener{
+        nombrePromo.text = datosPromo?.nombre_promocion
+        nombreProduct.text = datosPromo?.nombre_producto
+        descripcionPromo.text = datosPromo?.descripcion
 
-            var url = "http://10.0.76.173:8000/api/guardar_venta"
+        btnEliminarPromo.setOnClickListener{
+
+            var url = "http://10.0.76.173:8000/api/eliminar_promociones"
+
+            val jSon = Gson()
 
             val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonVen = jSon.toJson(datosTotal(
-                datosVen?.id,
-                total.text.toString().toFloat()
-            )
+            var datosJsonProd = jSon.toJson(
+                EliminarPromocionFragment.datosPromocion(
+                    datosPromo?.id,
+                    nombrePromo.text.toString(),
+                    nombreProduct.text.toString(),
+                    descripcionPromo.text.toString()
+                )
             )
 
-            var request = Request.Builder().url(url).post(datosJsonVen.toRequestBody(tipoPet))
+            var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
             val dbHelp = dbHelper(context as Context)
             val dbRead = dbHelp.readableDatabase
@@ -104,8 +114,10 @@ class ConfirmarVentaFragment : Fragment() {
                     val actMain = activity as Activity
 
                     actMain.runOnUiThread {
-                        Snackbar.make(btnGuardarVenta , "¡Su compra ha sido realizada!", Snackbar.LENGTH_SHORT)
+                        Snackbar.make(btnEliminarPromo , "Promocion eliminada", Snackbar.LENGTH_SHORT)
                             .show()
+                        val navController = view.findNavController()
+                        navController.navigate(R.id.nav_promocion)
                     }
                 }
 
@@ -117,15 +129,18 @@ class ConfirmarVentaFragment : Fragment() {
                 }
             })
         }
-
         return view;
     }
 
 
-    data class datosTotal(
+    data class datosPromocion(
         val id: Int?,
-        val total: Float
+        val nombre_promocion: String,
+        val nombre_producto: String,
+        val descripcion: String
     )
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -133,12 +148,12 @@ class ConfirmarVentaFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ConfirmarVentaFragment.
+         * @return A new instance of fragment EliminarPromocionFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ConfirmarVentaFragment().apply {
+            EliminarPromocionFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

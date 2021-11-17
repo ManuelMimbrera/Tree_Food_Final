@@ -92,8 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="82dp"
-        android:layout_marginBottom="332dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="368dp"
         android:text="Estado:"
         android:textColor="@color/ncarne"
         android:textSize="12dp"
@@ -106,8 +106,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="332dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="368dp"
         android:text="TextView"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="?android:attr/textColorSecondary"
@@ -130,9 +130,10 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <TextView
         android:id="@+id/textView7"

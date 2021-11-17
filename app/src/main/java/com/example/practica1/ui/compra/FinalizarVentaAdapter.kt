@@ -22,6 +22,7 @@ import java.io.IOException
 
 class FinalizarVentaAdapter(val datos: Array<FinalizarVentaFragment.datosTotal>): RecyclerView.Adapter<CustomView>() {
 
+
     override fun getItemCount(): Int {
         return datos.size
     }
@@ -34,12 +35,20 @@ class FinalizarVentaAdapter(val datos: Array<FinalizarVentaFragment.datosTotal>)
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
 
+        var guardarVenta = holder?.itemView.findViewById(R.id.btn_finalizar) as Button
 
-        var total = holder?.itemView.findViewById(R.id.txt_total) as TextView
+
+        var total = holder?.itemView.findViewById<TextView>(R.id.txt_total) as TextView
         var reci = holder?.itemView.findViewById<TextView>(R.id.txt_efectivo) as TextView
         var entre = holder?.itemView.findViewById<TextView>(R.id.txt_cambio) as TextView
-        total.text = datos[position].total.toString()
 
+
+        guardarVenta.setOnClickListener{
+            val navController = holder?.itemView?.findNavController()
+            navController.navigate(R.id.nav_confirmar_venta)
+        }
+
+        total.text = datos[position].total.toString()
 
     }
 }

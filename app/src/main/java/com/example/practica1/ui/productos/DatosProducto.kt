@@ -65,7 +65,7 @@ class DatosProducto : Fragment() {
 
         var objJson = Gson()
 
-        var datosProd = objJson.fromJson(arguments?.getString("datosProduct"),
+        var datosProd = objJson.fromJson(arguments?.getString("datosProducto"),
             datosProducto::class.java)
 
 

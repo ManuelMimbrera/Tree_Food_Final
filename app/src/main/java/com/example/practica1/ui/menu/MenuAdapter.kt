@@ -34,7 +34,6 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
 
-        var finalizarProd = holder?.itemView.findViewById(R.id.btnComprar) as TextView
         var agregarProd = holder?.itemView.findViewById(R.id.btnAgregarCarro) as TextView
         var nombreProd = holder?.itemView.findViewById(R.id.txt_nombrePro) as TextView
         var descripcionProd = holder?.itemView.findViewById(R.id.txt_descripcionPro) as TextView
@@ -96,18 +95,6 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
                     println("Algo salió mal")
                 }
             })
-        }
-
-        finalizarProd.setOnClickListener{
-            val navController = holder?.itemView?.findNavController()
-
-            var objJson = Gson()
-
-            var datos = objJson.toJson(datos[position])
-
-            val bundle = bundleOf("datosVenta" to datos)
-
-            navController.navigate(R.id.nav_finalizar_ven, bundle)
         }
 
         nombreProd.text = datos[position].nombre

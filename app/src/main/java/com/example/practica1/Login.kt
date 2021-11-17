@@ -24,9 +24,7 @@ class Login : AppCompatActivity() {
         //setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.sesion.setOnClickListener {
-
             val usuario = binding.usuario.editText?.text.toString()
             val password = binding.password.editText?.text.toString()
 

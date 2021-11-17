@@ -1,4 +1,4 @@
-package com.example.practica1.ui.compra
+package com.example.practica1.ui.promocion
 
 import android.app.Activity
 import android.content.Context
@@ -8,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.productos.DatosProducto
-import com.google.android.material.snackbar.Snackbar
+import com.example.practica1.ui.productos.ProductosAdapter
+import com.example.practica1.ui.productos.ProductosFragment
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -27,7 +26,12 @@ import java.io.IOException
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class FinalizarVentaFragment : Fragment() {
+/**
+ * A simple [Fragment] subclass.
+ * Use the [PromocionFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class PromocionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,20 +49,21 @@ class FinalizarVentaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_finalizar_venta, container, false)
+        var view =inflater.inflate(R.layout.fragment_promocion, container, false)
 
-        var listatotal = view.findViewById<RecyclerView>(R.id.Lista_total)
-        var btnFinalizar = view.findViewById<Button>(R.id.btnFinalizar)
+        var btnPromo = view.findViewById<Button>(R.id.btnPromocion)
+        var listaPromo= view.findViewById<RecyclerView>(R.id.lista_promocion)
 
-        var urlDatos = "http://10.0.76.173:8000/api/sumar_costo"
+
+        var urlDatos = "http://10.0.76.173:8000/api/lista_promociones"
 
         val tipoPeticion = "application/json; charset=utf-8".toMediaType()
 
         var njson = Gson()
 
-        var datosJsonPro = njson.toJson(FinalizarVentaFragment.peticionT(""))
+        var datosJsonPro = njson.toJson(PromocionFragment.datosPeticion("%"))
 
-        var request = Request.Builder().url(urlDatos).get()
+        var request = Request.Builder().url(urlDatos).post(datosJsonPro.toRequestBody(tipoPeticion))
 
         val dbHelp = dbHelper(context as Context)
         val dbRead = dbHelp.readableDatabase
@@ -96,9 +101,9 @@ class FinalizarVentaFragment : Fragment() {
                 actMain.runOnUiThread{
                     var datosJson = Gson()
 
-                    var totala = datosJson?.fromJson(textoJson, Array<FinalizarVentaFragment.datosTotal>::class.java)
+                    var promo = datosJson?.fromJson(textoJson, Array<PromocionFragment.datosPromocion>::class.java)
 
-                    listatotal.adapter = FinalizarVentaAdapter(totala)
+                    listaPromo.adapter = PromocionAdapter(promo)
 
                     //Toast.makeText(context,"¡Sincronización completa!", Toast.LENGTH_SHORT).show()
                 }
@@ -114,19 +119,22 @@ class FinalizarVentaFragment : Fragment() {
             }
         })
 
-        listatotal.layoutManager = LinearLayoutManager(context)
+        listaPromo.layoutManager = LinearLayoutManager(context)
 
         return view;
     }
 
-    data class datosTotal(
-        val total: Float,
-        val recibido: Float,
-        val entregado: Float,
+    class datosPromocion(
+        val id: Int,
+        val nombre_promocion: String,
+        val nombre_producto: String,
+        val descripcion: String
     )
-    data class peticionT(
-        val product: String
+
+    data class datosPeticion(
+        val promo: String
     )
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -134,12 +142,12 @@ class FinalizarVentaFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TotalFragment.
+         * @return A new instance of fragment PromocionFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FinalizarVentaFragment().apply {
+            PromocionFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

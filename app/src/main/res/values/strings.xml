@@ -65,7 +65,7 @@
     <string name="txt_pagar_total">Total a pagar</string>
     <string name="txt_pago">Efectivo</string>
     <string name="txt_regreso">Cambio</string>
-    <string name="btn_agregar_carrito">Agregar</string>
+    <string name="btn_agregar_carrito">Agregar alimento</string>
     <string name="btn_prod_ven">Seguir comprando</string>
     <string name="btn_comprar">Comprar ahora</string>
     <string name="btn_fin_ven">Finalizar compra</string>
