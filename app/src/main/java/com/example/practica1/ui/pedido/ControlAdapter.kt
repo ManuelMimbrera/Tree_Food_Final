@@ -15,7 +15,7 @@ class ControlAdapter(val datos: Array<ControlPedidos.datosPedido>): RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
         val layoutInflater = LayoutInflater.from(parent?.context)
-        val cellForRow = layoutInflater.inflate(R.layout.datos_pedido, parent, false)
+        val cellForRow = layoutInflater.inflate(R.layout.datos_pedidos_clientes, parent, false)
         return CustomView(cellForRow)
     }
 
