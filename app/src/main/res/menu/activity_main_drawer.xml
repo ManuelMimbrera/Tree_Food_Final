@@ -9,6 +9,14 @@
             android:icon="@drawable/ic_baseline_restaurant_menu_24"
             android:title="@string/menu" />
         <item
+            android:id="@+id/nav_ventas"
+            android:icon="@drawable/ic_baseline_add_shopping_cart_24"
+            android:title="@string/menu_carrito" />
+        <item
+            android:id="@+id/nav_pedido"
+            android:icon="@drawable/ic_baseline_content_paste_24"
+            android:title="@string/menu_pedido" />
+        <item
             android:id="@+id/nav_productos"
             android:icon="@drawable/ic_baseline_shopping_bag_24"
             android:title="@string/menu_producto" />
@@ -21,8 +29,8 @@
             android:icon="@drawable/ic_baseline_style_24"
             android:title="Promociones" />
         <item
-            android:id="@+id/nav_ventas"
-            android:icon="@drawable/ic_baseline_add_shopping_cart_24"
-            android:title="@string/menu_carrito" />
+            android:id="@+id/nav_pedidos"
+            android:icon="@drawable/ic_baseline_content_paste_24"
+            android:title="@string/menu_pedido_control" />
     </group>
 </menu>

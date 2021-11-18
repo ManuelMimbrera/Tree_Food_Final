@@ -138,4 +138,16 @@
         android:label="@string/menu_finalizar"
         tools:layout="@layout/fragment_comprar_ahora" />
 
+    <fragment
+        android:id="@+id/nav_pedido"
+        android:name="com.example.practica1.ui.pedido.DatosPedidoCliente"
+        android:label="@string/menu_pedido"
+        tools:layout="@layout/fragment_datos_pedido_cliente" />
+
+    <fragment
+        android:id="@+id/nav_pedidos"
+        android:name="com.example.practica1.ui.pedido.ControlPedidos"
+        android:label="@string/menu_pedido_control"
+        tools:layout="@layout/fragment_control_pedidos" />
+
 </navigation>

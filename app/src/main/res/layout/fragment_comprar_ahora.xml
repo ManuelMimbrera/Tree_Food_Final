@@ -7,22 +7,25 @@
     tools:context=".ui.ventas.ComprarAhora">
 
     <TextView
-        android:layout_width="423dp"
-        android:layout_height="224dp"
-        android:background="@drawable/ic_fondo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/txt_alimento"
+        android:textColor="@color/black"
+        android:textSize="21dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/identificador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:text="@string/txt_pagar_total"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="208dp"
+        android:text="TextView"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +33,7 @@
         android:id="@+id/btn_finalizar"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:layout_marginTop="604dp"
+        android:layout_marginTop="548dp"
         android:backgroundTint="#FFAB00"
         android:text="@string/btn_fin_ven"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,23 +41,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:text="@string/txt_pago"
-        android:textColor="@color/black"
-        android:textSize="21dp"
+    <Spinner
+        android:id="@+id/spTipoPago"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="412dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="432dp"
-        android:text="@string/txt_alimento"
+        android:layout_marginTop="372dp"
+        android:text="@string/txt_pago"
         android:textColor="@color/black"
         android:textSize="21dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
         android:id="@+id/txt_precioFinal"
         android:layout_width="320dp"
         android:layout_height="45dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="316dp"
         android:background="@drawable/round_border"
         android:backgroundTint="#EFEDED"
         android:ems="10"
@@ -79,13 +80,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spTipoPago"
-        android:layout_width="220dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="320dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:text="@string/txt_pagar_total"
+        android:textColor="@color/black"
+        android:textSize="21dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,8 +97,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="472dp"
         android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="428dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,8 +126,8 @@
         android:id="@+id/Alimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="476dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="100dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -113,29 +136,9 @@
         android:id="@+id/Precio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="512dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="136dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/Cantidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="536dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/identificador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="584dp"
-        android:text="TextView"
-        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

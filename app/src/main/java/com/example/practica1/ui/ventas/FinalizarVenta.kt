@@ -8,9 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
-import com.example.practica1.ui.menu.Menu
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -24,10 +25,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ComprarAhora.newInstance] factory method to
+ * Use the [FinalizarVenta.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ComprarAhora : Fragment() {
+class FinalizarVenta : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,16 +46,79 @@ class ComprarAhora : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_comprar_ahora, container, false)
+        val view = inflater.inflate(R.layout.fragment_finalizar_venta, container, false)
+
+        var listaCarro = view.findViewById<RecyclerView>(R.id.rvVenta)
+
+        var urlDatos = "http://192.168.100.27:8000/api/lista_opciones"
+
+        val tipoPeticion = "application/json; charset=utf-8".toMediaType()
+
+        var njson = Gson()
+
+        var datosJsonOp = njson.toJson(datosPeticion("%"))
+
+        var request = Request.Builder().url(urlDatos).post(datosJsonOp.toRequestBody(tipoPeticion))
+
+        val dbHelp = dbHelper(context as Context)
+        val dbRead = dbHelp.readableDatabase
+        val cursor = dbRead.query(
+            dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            null,             // The array of columns to return (pass null to get all)
+            null,              // The columns for the WHERE clause
+            null,          // The values for the WHERE clause
+            null,             // don't group the rows
+            null,              // don't filter by row groups
+            null               // The sort order
+        )
+
+        var token = ""
+
+        with(cursor) {
+            moveToNext()
+
+            token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
+        }
+
+        request.addHeader("Accept","application/json")
+        request.addHeader("Authorization","Bearer " + token)
+
+        var producto = OkHttpClient()
+
+        producto.newCall(request.build()).enqueue(object : Callback {
+            override  fun onResponse(call: Call, response: Response) {
+                var textoJson = response?.body?.string()
+
+                print(textoJson)
+
+                val actMain = activity as Activity
+
+                actMain.runOnUiThread{
+                    var datosJson = Gson()
+
+                    var prod = datosJson?.fromJson(textoJson, Array<datosCarrito>::class.java)
+
+                    listaCarro.adapter = opcionesPedido(prod)
+
+                    //Toast.makeText(context,"¡Sincronización completa!", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override  fun onFailure(call: Call, e: IOException) {
+                val actMain = activity as Activity
+
+                actMain.runOnUiThread{
+                    Toast.makeText(context,"Falló la petición" + e.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        listaCarro.layoutManager = LinearLayoutManager(context)
 
         var btnFinalizar = view.findViewById<Button>(R.id.btn_finalizar)
         var preciofinal = view.findViewById<TextView>(R.id.txt_precioFinal)
-        var identi = view.findViewById<TextView>(R.id.identificador)
-        var alim = view.findViewById<TextView>(R.id.Alimento)
-        var precio = view.findViewById<TextView>(R.id.Precio)
-        var cantidad = view.findViewById<TextView>(R.id.Cantidad)
-        var tipo = view.findViewById<TextView>(R.id.textTipo)
         var descripcion = view.findViewById<TextView>(R.id.textPago)
+        var tipo = view.findViewById<TextView>(R.id.textTipo)
         var spinner = view.findViewById<Spinner>(R.id.spTipoPago)
         val pago = resources.getStringArray(R.array.opcionesPago)
 
@@ -86,16 +150,13 @@ class ComprarAhora : Fragment() {
 
         var objJson = Gson()
 
-        var datosProd = objJson.fromJson(arguments?.getString("datosVenta"), Menu.datosProducto::class.java)
+        var datosVen = objJson.fromJson(arguments?.getString("datosPedido"), datosCarrito::class.java)
 
-        identi.text = datosProd?.id.toString()
-        alim.text = datosProd?.nombre.toString()
-        precio.text = datosProd?.precio.toString()
 
         btnFinalizar.setOnClickListener {
 
 
-            var url = "http://10.0.76.173:8000/api/guardar_venta"
+            var url = "http://192.168.100.27:8000/api/guardar_venta"
 
             val jSon = Gson()
 
@@ -104,8 +165,8 @@ class ComprarAhora : Fragment() {
             var datosJsonVen = jSon.toJson(
                 datosVenta(
                     preciofinal.text.toString().toFloat(),
-                    identi.text.toString().toInt(),
-                    cantidad.text.toString().toInt(),
+                    datosVen.id_producto,
+                    datosVen.cantidad,
                     tipo.text.toString()
                 )
             )
@@ -159,11 +220,24 @@ class ComprarAhora : Fragment() {
         return view
     }
 
-    class datosVenta(
+    data class datosVenta(
         val total: Float,
         val id_producto: Int,
-        val cantidad: Int,
+        val cantidad: Float,
         val pago: String
+    )
+
+    data class datosCarrito(
+        val id: Int?,
+        val nombre: String,
+        val descripcio: String,
+        val precio: Float,
+        val cantidad: Float,
+        val id_producto: Int
+    )
+
+    data class datosPeticion(
+        val product: String
     )
 
     companion object {
@@ -173,12 +247,12 @@ class ComprarAhora : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ComprarAhora.
+         * @return A new instance of fragment FinalizarVenta.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ComprarAhora().apply {
+            FinalizarVenta().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
