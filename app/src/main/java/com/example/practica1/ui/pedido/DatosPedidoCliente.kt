@@ -51,7 +51,7 @@ class DatosPedidoCliente : Fragment() {
 
         var listaCarro = view.findViewById<RecyclerView>(R.id.rvPedido)
 
-        var urlDatos = "http://192.168.100.27:8000/api/lista_predidos"
+        var urlDatos = "http://10.0.76.173:8000/api/lista_predidos"
 
         val tipoPeticion = "application/json; charset=utf-8".toMediaType()
 

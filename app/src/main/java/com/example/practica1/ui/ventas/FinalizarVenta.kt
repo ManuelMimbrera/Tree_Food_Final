@@ -156,7 +156,7 @@ class FinalizarVenta : Fragment() {
         btnFinalizar.setOnClickListener {
 
 
-            var url = "http://192.168.100.27:8000/api/guardar_venta"
+            var url = "http://10.0.76.173:8000/api/guardar_venta"
 
             val jSon = Gson()
 
