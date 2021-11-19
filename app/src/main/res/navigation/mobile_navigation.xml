@@ -101,12 +101,6 @@
         tools:layout="@layout/fragment_datos_venta" />
 
     <fragment
-        android:id="@+id/nav_finalizar_ven"
-        android:name="com.example.practica1.ui.compra.FinalizarVentaFragment"
-        android:label="@string/menu_finalizar"
-        tools:layout="@layout/fragment_finalizar_venta" />
-
-    <fragment
         android:id="@+id/nav_eliminar_ven"
         android:name="com.example.practica1.ui.ventas.EliminarOpcion"
         android:label="@string/menu_elim_prod"
@@ -149,5 +143,11 @@
         android:name="com.example.practica1.ui.pedido.ControlPedidos"
         android:label="@string/menu_pedido_control"
         tools:layout="@layout/fragment_control_pedidos" />
+
+    <fragment
+        android:id="@+id/nav_editar"
+        android:name="com.example.practica1.ui.pedido.EditarPedido"
+        android:label="@string/menu_edit"
+        tools:layout="@layout/fragment_editar_pedido" />
 
 </navigation>

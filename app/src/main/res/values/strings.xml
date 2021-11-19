@@ -62,6 +62,11 @@
     <!-- Pedido -->
     <string name="menu_pedido">Mis pedidos</string>
     <string name="menu_pedido_control">Pedidos</string>
+    <string name="menu_edit">Pedido a editar</string>
+    <string-array name="opcionesP">
+        <item>Entregado</item>
+    </string-array>
+    <string name="btnCambio">Cambiar estatus</string>
 
     <!-- Ventas -->
     <string name="txt_alimento">Alimento a comprar</string>
