@@ -45,7 +45,7 @@ class ControlAdapter(val datos: Array<ControlPedidos.datosPedido>): RecyclerView
         }
 
         alim.text = datos[position].nombre
-        pre.text = datos[position].precio.toString()
+        pre.text = datos[position].precio
         can.text = datos[position].cantidad.toString()
         pago.text = datos[position].pago
         dire.text = datos[position].direccion

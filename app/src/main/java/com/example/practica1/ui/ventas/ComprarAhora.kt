@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.navigation.findNavController
 import com.example.practica1.R
 import com.example.practica1.base.dbHelper
 import com.example.practica1.ui.menu.Menu
@@ -90,7 +91,7 @@ class ComprarAhora : Fragment() {
 
         identi.text = datosProd?.id.toString()
         alim.text = datosProd?.nombre.toString()
-        precio.text = datosProd?.precio.toString()
+        precio.text = datosProd?.precio
 
         btnFinalizar.setOnClickListener {
 
@@ -153,6 +154,9 @@ class ComprarAhora : Fragment() {
                     }
                 }
             })
+
+            val navController = view.findNavController()
+            navController.navigate(R.id.nav_pedido)
 
         }
 

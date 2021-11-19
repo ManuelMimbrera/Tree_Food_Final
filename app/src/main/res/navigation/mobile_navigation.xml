@@ -101,6 +101,12 @@
         tools:layout="@layout/fragment_datos_venta" />
 
     <fragment
+        android:id="@+id/nav_finalizar_ven"
+        android:name="com.example.practica1.ui.ventas.FinalizarVenta"
+        android:label="@string/menu_finalizar"
+        tools:layout="@layout/fragment_finalizar_venta" />
+
+    <fragment
         android:id="@+id/nav_eliminar_ven"
         android:name="com.example.practica1.ui.ventas.EliminarOpcion"
         android:label="@string/menu_elim_prod"

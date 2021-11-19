@@ -135,7 +135,7 @@ class Menu : Fragment() {
         val id: Int?,
         val nombre: String,
         val descripcion: String,
-        val precio: Float
+        val precio: String
     )
 
     data class datosPeticion(

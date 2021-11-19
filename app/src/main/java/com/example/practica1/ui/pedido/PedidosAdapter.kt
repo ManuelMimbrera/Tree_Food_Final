@@ -28,7 +28,7 @@ class PedidosAdapter(val datos: Array<DatosPedidoCliente.datosPedido>): Recycler
         var esta = holder?.itemView.findViewById(R.id.textEstatus) as TextView
 
         alim.text = datos[position].nombre
-        pre.text = datos[position].precio.toString()
+        pre.text = datos[position].precio
         can.text = datos[position].cantidad.toString()
         pago.text = datos[position].pago
         esta.text = datos[position].estatus

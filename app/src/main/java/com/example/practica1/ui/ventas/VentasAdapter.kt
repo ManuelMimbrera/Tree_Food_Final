@@ -48,7 +48,7 @@ class VentasAdapter(val datos: Array<DatosVenta.datosCarrito>): RecyclerView.Ada
 
         prod.text = datos[position].nombre
         descri.text = datos[position].descripcion
-        costo.text = datos[position].precio.toString()
+        costo.text = datos[position].precio
         resultado.text = datos[position].cantidad.toString()
         idCar.text = datos[position].id.toString()
     }

@@ -135,7 +135,7 @@ class ProductosFragment : Fragment() {
         val id: Int,
         val nombre: String,
         val descripcion: String,
-        val precio: Float,
+        val precio: String,
         val nomcate: String,
         val id_categoria: Int,
     )

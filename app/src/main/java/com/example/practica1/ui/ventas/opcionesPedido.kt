@@ -27,7 +27,7 @@ class opcionesPedido(val datos: Array<FinalizarVenta.datosCarrito>): RecyclerVie
 
         id.text = datos[position].id_producto.toString()
         prod.text = datos[position].nombre
-        costo.text = datos[position].precio.toString()
+        costo.text = datos[position].precio
         cantidad.text = datos[position].cantidad.toString()
     }
 }

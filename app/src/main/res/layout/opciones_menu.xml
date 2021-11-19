@@ -118,7 +118,6 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnComprar"
-                            style="@style/Widget.MaterialComponents.Button.Icon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/btn_comprar"

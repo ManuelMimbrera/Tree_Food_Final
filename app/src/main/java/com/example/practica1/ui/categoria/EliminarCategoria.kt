@@ -58,8 +58,8 @@ class EliminarCategoria : Fragment() {
 
         var datosCat = objJson.fromJson(arguments?.getString("datosCategoris"),datosCategory::class.java)
 
-        nombre.text = datosCat?.nomCate
-        descripcion.text = datosCat?.desCate
+        nombre.text = datosCat?.nomcate
+        descripcion.text = datosCat?.descate
         estado.text = datosCat?.estado
 
         btnEliminarC.setOnClickListener{
@@ -125,8 +125,8 @@ class EliminarCategoria : Fragment() {
 
     data class datosCategory(
         val id: Int?,
-        val nomCate: String,
-        val desCate: String,
+        val nomcate: String,
+        val descate: String,
         val estado: String
     )
 

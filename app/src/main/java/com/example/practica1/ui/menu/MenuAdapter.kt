@@ -166,7 +166,7 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
         idProd.text = datos[position].id.toString()
         nombreProd.text = datos[position].nombre
         descripcionProd.text = datos[position].descripcion
-        precioProd.text = datos[position].precio.toString()
+        precioProd.text = datos[position].precio
     }
 }
 

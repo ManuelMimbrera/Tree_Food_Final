@@ -122,7 +122,7 @@ class ControlPedidos : Fragment() {
     data class datosPedido(
         val id: Int?,
         val nombre: String,
-        val precio: Float,
+        val precio: String,
         val cantidad: Int,
         val pago: String,
         val direccion: String,

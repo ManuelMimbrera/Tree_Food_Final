@@ -69,7 +69,7 @@ class EditarProducto : Fragment() {
         category2.text = datosProd?.nomcate.toString()
         nombreProdu.text = datosProd?.nombre
         descripcionProdu.text = datosProd?.descripcion
-        precioProdu.text = datosProd?.precio.toString()
+        precioProdu.text = datosProd?.precio
 
 
         btnGuardarProd.setOnClickListener{
@@ -85,7 +85,7 @@ class EditarProducto : Fragment() {
                     datosProd?.id,
                     nombreProdu.text.toString(),
                     descripcionProdu.text.toString(),
-                    precioProdu.text.toString().toFloat(),
+                    precioProdu.text.toString(),
                     datosProd?.id_categoria,
                 )
             )

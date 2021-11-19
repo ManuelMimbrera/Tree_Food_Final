@@ -170,8 +170,8 @@ class CategoriasFragment : Fragment() {
 
     class datosCategorias(
         val id: Int,
-        val nomCate: String,
-        val desCate: String,
+        val nomcate: String,
+        val descate: String,
         val estado: String
     )
 

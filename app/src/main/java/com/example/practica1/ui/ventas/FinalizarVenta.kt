@@ -223,7 +223,7 @@ class FinalizarVenta : Fragment() {
     data class datosVenta(
         val total: Float,
         val id_producto: Int,
-        val cantidad: Float,
+        val cantidad: Int,
         val pago: String
     )
 
@@ -231,8 +231,8 @@ class FinalizarVenta : Fragment() {
         val id: Int?,
         val nombre: String,
         val descripcio: String,
-        val precio: Float,
-        val cantidad: Float,
+        val precio: String,
+        val cantidad: Int,
         val id_producto: Int
     )
 

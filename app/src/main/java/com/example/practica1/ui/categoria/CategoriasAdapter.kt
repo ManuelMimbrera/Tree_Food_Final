@@ -62,8 +62,8 @@ class CategoriasAdapter(val datos:Array<CategoriasFragment.datosCategorias>):Rec
         }
 
 
-        nombre.text = datos[position].nomCate
-        descripcion.text = datos[position].desCate
+        nombre.text = datos[position].nomcate
+        descripcion.text = datos[position].descate
         estado.text = datos[position].estado
     }
 

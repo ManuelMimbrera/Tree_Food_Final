@@ -64,7 +64,7 @@ class EliminarOpcion : DialogFragment() {
 
         nombreVen.text = datosProd?.nombre
         descripcionVen.text = datosProd?.descripcion
-        precioVen.text = datosProd?.precio.toString()
+        precioVen.text = datosProd?.precio
 
         btnEliminarVen.setOnClickListener{
 

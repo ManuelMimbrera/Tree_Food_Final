@@ -84,7 +84,7 @@ class EditarPedido : Fragment() {
             ControlPedidos.datosPedido::class.java)
 
         alimento.text = datosP?.nombre
-        precio.text = datosP?.precio.toString()
+        precio.text = datosP?.precio
         cantidad.text = datosP?.cantidad.toString()
         pago.text = datosP?.pago
 

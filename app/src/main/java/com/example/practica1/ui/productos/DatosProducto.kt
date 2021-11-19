@@ -59,13 +59,11 @@ class DatosProducto : Fragment() {
 
         var btnGuardarProd = view.findViewById<Button>(R.id.btn_guardar_prod)
 
-        var iden = view.findViewById<TextView>(R.id.idenCate)
-        var idenP = view.findViewById<TextView>(R.id.idenProd)
         var category = view.findViewById<TextView>(R.id.txtNomCategory)
         var nombreProdu = view.findViewById<TextView>(R.id.txt_nombreP)
         var descripcionProdu = view.findViewById<TextView>(R.id.txt_descripcionP)
         var precioProdu = view.findViewById<TextView>(R.id.txt_precioP)
-        var categorias = view.findViewById<RecyclerView>(R.id.opCategorias)
+        var categorias = view.findViewById<Button>(R.id.opCategorias)
 
         categorias.setOnClickListener {
             val navController = view.findNavController()
@@ -80,76 +78,77 @@ class DatosProducto : Fragment() {
         var datosCate = objJson.fromJson(arguments?.getString("Id"),
             ReciclerCategorias.datosCategoria::class.java)
 
-        iden.text = datosCate?.id.toString()
-        category.text = datosCate?.nomcate
 
-        idenP.text = datosProd?.id.toString()
+        category.text = datosCate?.nomcate
         nombreProdu.text = datosProd?.nombre
         descripcionProdu.text = datosProd?.descripcion
-        precioProdu.text = datosProd?.precio.toString()
+        precioProdu.text = datosProd?.precio
 
         btnGuardarProd.setOnClickListener{
 
-            var url = "http://10.0.76.173:8000/api/guardar_productos"
+                var url = "http://10.0.76.173:8000/api/guardar_productos"
 
-            val jSon = Gson()
+                val jSon = Gson()
 
-            val tipoPet = "application/json; charset=utf-8".toMediaType()
+                val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonProd = jSon.toJson(datosProducto(
-                datosProd?.id,
-                nombreProdu.text.toString(),
-                descripcionProdu.text.toString(),
-                precioProdu.text.toString().toFloat(),
-                datosCate?.id,
-            ))
+                var datosJsonProd = jSon.toJson(datosProducto(
+                    datosProd?.id,
+                    nombreProdu.text.toString(),
+                    descripcionProdu.text.toString(),
+                    precioProdu.text.toString(),
+                    datosCate?.id,
+                ))
 
-            var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
+                var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
-            val dbHelp = dbHelper(context as Context)
-            val dbRead = dbHelp.readableDatabase
-            val cursor = dbRead.query(
-                dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-                null,             // The array of columns to return (pass null to get all)
-                null,              // The columns for the WHERE clause
-                null,          // The values for the WHERE clause
-                null,             // don't group the rows
-                null,              // don't filter by row groups
-                null               // The sort order
-            )
+                val dbHelp = dbHelper(context as Context)
+                val dbRead = dbHelp.readableDatabase
+                val cursor = dbRead.query(
+                    dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+                    null,             // The array of columns to return (pass null to get all)
+                    null,              // The columns for the WHERE clause
+                    null,          // The values for the WHERE clause
+                    null,             // don't group the rows
+                    null,              // don't filter by row groups
+                    null               // The sort order
+                )
 
-            var token = ""
+                var token = ""
 
-            with(cursor) {
-                moveToNext()
+                with(cursor) {
+                    moveToNext()
 
-                token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
-            }
-
-            request.addHeader("Accept","application/json")
-            request.addHeader("Authorization","Bearer " + token)
-
-            var client = OkHttpClient()
-
-            client.newCall(request.build()).enqueue(object : Callback {
-                override fun onResponse(call: Call, response: Response) {
-                    val actMain = activity as Activity
-
-                    actMain.runOnUiThread {
-                        Snackbar.make(btnGuardarProd , "Alimento guardado", Snackbar.LENGTH_SHORT)
-                            .show()
-                    }
+                    token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
                 }
 
-                override fun onFailure(call: Call, e: IOException) {
-                    val actMain = activity as Activity
-                    actMain.runOnUiThread{
-                        Toast.makeText(context,"Algo salió mal" + e.message, Toast.LENGTH_SHORT).show()
+                request.addHeader("Accept","application/json")
+                request.addHeader("Authorization","Bearer " + token)
+
+                var client = OkHttpClient()
+
+                client.newCall(request.build()).enqueue(object : Callback {
+                    override fun onResponse(call: Call, response: Response) {
+                        val actMain = activity as Activity
+
+                        actMain.runOnUiThread {
+                            Snackbar.make(btnGuardarProd , "Alimento guardado", Snackbar.LENGTH_SHORT).show()
+
+                            category.setText(null)
+                            nombreProdu.setText(null)
+                            descripcionProdu.setText(null)
+                            precioProdu.setText(null)
+                        }
                     }
-                }
-            })
+
+                    override fun onFailure(call: Call, e: IOException) {
+                        val actMain = activity as Activity
+                        actMain.runOnUiThread{
+                            Toast.makeText(context,"Algo salió mal" + e.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
         }
-
 
         return view
 
@@ -159,7 +158,7 @@ class DatosProducto : Fragment() {
         val id: Int?,
         val nombre: String,
         val descripcion: String,
-        val precio: Float,
+        val precio: String,
         val id_categoria: Int?,
     )
 

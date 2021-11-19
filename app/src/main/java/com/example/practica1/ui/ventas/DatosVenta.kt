@@ -141,14 +141,13 @@ class DatosVenta : DialogFragment() {
         val id: Int,
         val nombre: String,
         val descripcion: String,
-        val precio: Float,
+        val precio: String,
         val cantidad: Int
     )
 
     data class datosPeticion(
         val product: String
     )
-
 
     companion object {
         /**

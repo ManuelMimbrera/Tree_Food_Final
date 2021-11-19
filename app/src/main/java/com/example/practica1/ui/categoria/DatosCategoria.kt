@@ -96,74 +96,75 @@ private const val ARG_PARAM2 = "param2"
 
         var datosCat = objJson.fromJson(arguments?.getString("datosCategori"),datosCategoria::class.java)
 
-        nombre.text = datosCat?.nomCate
-        descripcion.text = datosCat?.desCate
+        nombre.text = datosCat?.nomcate
+        descripcion.text = datosCat?.descate
         estado.text = datosCat?.estado
 
         btnGuardar.setOnClickListener{
 
-            var url = "http://10.0.76.173:8000/api/guarda_categorias"
+                var url = "http://10.0.76.173:8000/api/guarda_categorias"
 
-            val jSon = Gson()
+                val jSon = Gson()
 
-            val tipoPet = "application/json; charset=utf-8".toMediaType()
+                val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-            var datosJsonCate = jSon.toJson(datosCategoria(datosCat?.id,nombre.text.toString(),descripcion.text.toString(),estado.text.toString()))
+                var datosJsonCate = jSon.toJson(datosCategoria(datosCat?.id,nombre.text.toString(),descripcion.text.toString(),estado.text.toString()))
 
-            var request = Request.Builder().url(url).post(datosJsonCate.toRequestBody(tipoPet))
+                var request = Request.Builder().url(url).post(datosJsonCate.toRequestBody(tipoPet))
 
-            val dbHelp = dbHelper(context as Context)
-            val dbRead = dbHelp.readableDatabase
-            val cursor = dbRead.query(
-                dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-                null,             // The array of columns to return (pass null to get all)
-                null,              // The columns for the WHERE clause
-                null,          // The values for the WHERE clause
-                null,             // don't group the rows
-                null,              // don't filter by row groups
-                null               // The sort order
-            )
+                val dbHelp = dbHelper(context as Context)
+                val dbRead = dbHelp.readableDatabase
+                val cursor = dbRead.query(
+                    dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+                    null,             // The array of columns to return (pass null to get all)
+                    null,              // The columns for the WHERE clause
+                    null,          // The values for the WHERE clause
+                    null,             // don't group the rows
+                    null,              // don't filter by row groups
+                    null               // The sort order
+                )
 
-            var token = ""
+                var token = ""
 
-            with(cursor) {
-                moveToNext()
+                with(cursor) {
+                    moveToNext()
 
-                token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
-            }
-
-            request.addHeader("Accept","application/json")
-            request.addHeader("Authorization","Bearer " + token)
-
-            var client = OkHttpClient()
-
-            client.newCall(request.build()).enqueue(object : Callback {
-                override fun onResponse(call: Call, response: Response) {
-                    val actMain = activity as Activity
-
-                    actMain.runOnUiThread {
-                        Toast.makeText(context, "Datos guardados", Toast.LENGTH_LONG).show()
-                    }
+                    token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
                 }
 
-                override fun onFailure(call: Call, e: IOException) {
-                    val actMain = activity as Activity
-                    actMain.runOnUiThread{
-                        Toast.makeText(context,"Algo salió mal" + e.message, Toast.LENGTH_SHORT).show()
+                request.addHeader("Accept","application/json")
+                request.addHeader("Authorization","Bearer " + token)
+
+                var client = OkHttpClient()
+
+                client.newCall(request.build()).enqueue(object : Callback {
+                    override fun onResponse(call: Call, response: Response) {
+                        val actMain = activity as Activity
+
+                        actMain.runOnUiThread {
+                            Toast.makeText(context, "Datos guardados", Toast.LENGTH_LONG).show()
+
+                            nombre.setText(null)
+                            descripcion.setText(null)
+                        }
                     }
-                }
-            })
+
+                    override fun onFailure(call: Call, e: IOException) {
+                        val actMain = activity as Activity
+                        actMain.runOnUiThread{
+                            Toast.makeText(context,"Algo salió mal" + e.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
         }
 
         return view
     }
 
-
-
     data class datosCategoria(
         val id: Int?,
-        val nomCate: String,
-        val desCate: String,
+        val nomcate: String,
+        val descate: String,
         val estado: String
     )
 
