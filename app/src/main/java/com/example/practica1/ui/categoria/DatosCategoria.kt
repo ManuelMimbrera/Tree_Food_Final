@@ -18,6 +18,7 @@ import com.example.practica1.base.dbHelper
 import com.example.practica1.ui.categoria.CategoriasFragment
 import com.example.practica1.ui.categoria.CustomView
 import com.example.practica1.ui.categoria.EliminarCategoria
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -102,6 +103,7 @@ private const val ARG_PARAM2 = "param2"
 
         btnGuardar.setOnClickListener{
 
+            if(nombre.text.isNotEmpty() && descripcion.text.isNotEmpty()){
                 var url = "http://10.0.76.173:8000/api/guarda_categorias"
 
                 val jSon = Gson()
@@ -156,6 +158,9 @@ private const val ARG_PARAM2 = "param2"
                         }
                     }
                 })
+            }else{
+                Snackbar.make(btnGuardar , "Existen campos vacíos", Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         return view

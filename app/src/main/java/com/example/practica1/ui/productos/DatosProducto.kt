@@ -86,19 +86,22 @@ class DatosProducto : Fragment() {
 
         btnGuardarProd.setOnClickListener{
 
+            if(category.text.isNotEmpty() && nombreProdu.text.isNotEmpty() && descripcionProdu.text.isNotEmpty() && precioProdu.text.isNotEmpty()) {
                 var url = "http://10.0.76.173:8000/api/guardar_productos"
 
                 val jSon = Gson()
 
                 val tipoPet = "application/json; charset=utf-8".toMediaType()
 
-                var datosJsonProd = jSon.toJson(datosProducto(
-                    datosProd?.id,
-                    nombreProdu.text.toString(),
-                    descripcionProdu.text.toString(),
-                    precioProdu.text.toString(),
-                    datosCate?.id,
-                ))
+                var datosJsonProd = jSon.toJson(
+                    datosProducto(
+                        datosProd?.id,
+                        nombreProdu.text.toString(),
+                        descripcionProdu.text.toString(),
+                        precioProdu.text.toString(),
+                        datosCate?.id,
+                    )
+                )
 
                 var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
 
@@ -119,11 +122,12 @@ class DatosProducto : Fragment() {
                 with(cursor) {
                     moveToNext()
 
-                    token = getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
+                    token =
+                        getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
                 }
 
-                request.addHeader("Accept","application/json")
-                request.addHeader("Authorization","Bearer " + token)
+                request.addHeader("Accept", "application/json")
+                request.addHeader("Authorization", "Bearer " + token)
 
                 var client = OkHttpClient()
 
@@ -132,7 +136,11 @@ class DatosProducto : Fragment() {
                         val actMain = activity as Activity
 
                         actMain.runOnUiThread {
-                            Snackbar.make(btnGuardarProd , "Alimento guardado", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(
+                                btnGuardarProd,
+                                "Alimento guardado",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
 
                             category.setText(null)
                             nombreProdu.setText(null)
@@ -143,11 +151,18 @@ class DatosProducto : Fragment() {
 
                     override fun onFailure(call: Call, e: IOException) {
                         val actMain = activity as Activity
-                        actMain.runOnUiThread{
-                            Toast.makeText(context,"Algo salió mal" + e.message, Toast.LENGTH_SHORT).show()
+                        actMain.runOnUiThread {
+                            Toast.makeText(
+                                context,
+                                "Algo salió mal" + e.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 })
+            }else{
+                Snackbar.make(btnGuardarProd , "Existen campos vacíos", Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         return view
