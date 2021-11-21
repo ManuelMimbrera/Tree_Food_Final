@@ -164,7 +164,7 @@ class FinalizarVenta : Fragment() {
 
             var datosJsonVen = jSon.toJson(
                 datosVenta(
-                    preciofinal.text.toString().toFloat(),
+                    preciofinal.text.toString().toInt(),
                     datosVen.id_producto,
                     datosVen.cantidad,
                     tipo.text.toString()
@@ -221,7 +221,7 @@ class FinalizarVenta : Fragment() {
     }
 
     data class datosVenta(
-        val total: Float,
+        val total: Int,
         val id_producto: Int,
         val cantidad: Int,
         val pago: String
