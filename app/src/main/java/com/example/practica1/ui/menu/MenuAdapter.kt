@@ -160,6 +160,8 @@ class MenuAdapter(val datos: Array<Menu.datosProducto>): RecyclerView.Adapter<Cu
 
             val bundle = bundleOf("datosVenta" to datos)
 
+            bundle.putString("datosVenta2", resultado.text.toString())
+
             navController.navigate(R.id.nav_comprar, bundle)
         }
 

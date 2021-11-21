@@ -32,12 +32,14 @@ class ComprarAhora : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var res: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            res = it.getString("datosVenta2")
         }
     }
 
@@ -89,9 +91,15 @@ class ComprarAhora : Fragment() {
 
         var datosProd = objJson.fromJson(arguments?.getString("datosVenta"), Menu.datosProducto::class.java)
 
+        var uno: Int = (datosProd?.precio.toString().toInt())
+        var dos: Int = (res.toString().toInt())
+        var multi: String = (uno * dos).toString()
+
         identi.text = datosProd?.id.toString()
         alim.text = datosProd?.nombre.toString()
         precio.text = datosProd?.precio
+        cantidad.text = res
+        preciofinal.text = multi
 
         btnFinalizar.setOnClickListener {
 
@@ -104,7 +112,7 @@ class ComprarAhora : Fragment() {
 
             var datosJsonVen = jSon.toJson(
                 datosVenta(
-                    preciofinal.text.toString().toFloat(),
+                    preciofinal.text.toString().toInt(),
                     identi.text.toString().toInt(),
                     cantidad.text.toString().toInt(),
                     tipo.text.toString()
@@ -164,7 +172,7 @@ class ComprarAhora : Fragment() {
     }
 
     class datosVenta(
-        val total: Float,
+        val total: Int,
         val id_producto: Int,
         val cantidad: Int,
         val pago: String
