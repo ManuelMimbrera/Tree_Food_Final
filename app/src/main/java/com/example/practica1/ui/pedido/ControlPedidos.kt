@@ -124,6 +124,7 @@ class ControlPedidos : Fragment() {
         val nombre: String,
         val precio: String,
         val cantidad: Int,
+        val total: Int,
         val pago: String,
         val direccion: String,
         val estatus: String

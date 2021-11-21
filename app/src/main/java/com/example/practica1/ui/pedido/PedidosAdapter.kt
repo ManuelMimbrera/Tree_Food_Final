@@ -24,12 +24,14 @@ class PedidosAdapter(val datos: Array<DatosPedidoCliente.datosPedido>): Recycler
         var alim = holder?.itemView.findViewById(R.id.textAlimento) as TextView
         var pre = holder?.itemView.findViewById(R.id.textPrecio) as TextView
         var can = holder?.itemView.findViewById(R.id.textCantidad) as TextView
+        var total = holder?.itemView.findViewById(R.id.textTotal) as TextView
         var pago = holder?.itemView.findViewById(R.id.textPago) as TextView
         var esta = holder?.itemView.findViewById(R.id.textEstatus) as TextView
 
         alim.text = datos[position].nombre
         pre.text = datos[position].precio
         can.text = datos[position].cantidad.toString()
+        total.text = datos[position].total.toString()
         pago.text = datos[position].pago
         esta.text = datos[position].estatus
     }

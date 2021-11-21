@@ -52,6 +52,7 @@ class EditarPedido : Fragment() {
         var alimento = view.findViewById<TextView>(R.id.textAlimento)
         var precio = view.findViewById<TextView>(R.id.textPrecio)
         var cantidad = view.findViewById<TextView>(R.id.textCantidad)
+        var total = view.findViewById<TextView>(R.id.textTotal)
         var pago = view.findViewById<TextView>(R.id.textPago)
         var estatus = view.findViewById<Spinner>(R.id.snEstatus)
         var valor = view.findViewById<TextView>(R.id.textEstatusE)
@@ -86,6 +87,7 @@ class EditarPedido : Fragment() {
         alimento.text = datosP?.nombre
         precio.text = datosP?.precio
         cantidad.text = datosP?.cantidad.toString()
+        total.text = datosP?.total.toString()
         pago.text = datosP?.pago
 
         btnListo.setOnClickListener {
